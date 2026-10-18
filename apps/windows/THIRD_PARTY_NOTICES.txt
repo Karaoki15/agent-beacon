@@ -1,0 +1,21 @@
+Agent Beacon Windows beta
+
+The application is distributed under the MIT license in LICENSE.
+
+The frozen runtime includes CPython 3.11 and its supplied redistributable
+components. See licenses/LICENSE.txt for Python and bundled-library notices.
+
+The executables use the unmodified PyInstaller 6.22.3 bootloader and runtime
+support. See licenses/COPYING.txt for its terms and bootloader exception.
+
+The setup interface uses Python's Tcl/Tk 8.6 distribution. Its license terms
+are also supplied as licenses/license.terms; additional notices are included
+inside the setup's Tcl/Tk data files.
+
+The browser controller includes Kazuhiko Arase's MIT-licensed QR generator.
+The source header in agent_beacon/web/vendor/qr.js carries its notice.
+
+The bundled Android APK carries its own Apache-2.0/AndroidX/ZXing notices.
+See the Android app's licenses and apps/android/THIRD_PARTY_NOTICES.md in the
+source distribution. No build environment, account files, pairing registry,
+signing keys, tokens or transcript data are included in the Windows package.

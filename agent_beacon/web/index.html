@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0d12">
+  <meta name="color-scheme" content="dark">
+  <title>Agent Beacon — локальний статус</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/vendor/qr.js" defer></script>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Agent Beacon, головна">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>AGENT <strong>BEACON</strong></span>
+      </a>
+      <div class="topbar-right">
+        <span class="demo-badge"><span class="badge-dot"></span>ЛОКАЛЬНО</span>
+        <span class="connection" id="connectionLabel"><span class="connection-dot" aria-hidden="true"></span><span>Підключення…</span></span>
+      </div>
+    </header>
+
+    <section class="hero" aria-labelledby="pageTitle">
+      <div class="eyebrow"><span class="eyebrow-line"></span>ЛОКАЛЬНИЙ ІНДИКАТОР АГЕНТА</div>
+      <h1 id="pageTitle">Бачте стан.<br><span>Без зайвих слів.</span></h1>
+      <p class="intro">Agent Beacon показує, що зараз відбувається на вашому комп’ютері.</p>
+    </section>
+
+    <section class="beacon-card" aria-label="Поточний стан агента">
+      <div class="beacon-heading">
+        <div>
+          <p class="section-kicker">ПОТОЧНИЙ СТАН</p>
+          <p class="beacon-caption" id="beaconCaption">Очікуємо свіжий сигнал</p>
+        </div>
+        <span class="live-chip" id="liveChip"><span class="live-dot" aria-hidden="true"></span><span>ОЧІКУВАННЯ</span></span>
+      </div>
+
+      <div class="beacon-body" id="beaconBody" data-state="unavailable" aria-live="polite" aria-atomic="true">
+        <div class="signal-stack" role="img" aria-label="Світлофор: стан поки недоступний">
+          <span class="lamp lamp-red" aria-hidden="true"></span>
+          <span class="lamp lamp-yellow" aria-hidden="true"></span>
+          <span class="lamp lamp-green" aria-hidden="true"></span>
+        </div>
+        <div class="state-copy">
+          <span class="state-overline" id="stateOverline">СИГНАЛ НЕАКТИВНИЙ</span>
+          <h2 id="stateTitle">Немає даних</h2>
+          <p id="stateReason">Зачекайте на підключення до комп’ютера.</p>
+        </div>
+      </div>
+
+      <div class="beacon-footer">
+        <span class="updated-label"><span class="pulse-ring" aria-hidden="true"></span><span id="updatedLabel">Сигнал ще не отримано</span></span>
+        <span class="session-count" id="sessionCount">0 чатів</span>
+      </div>
+    </section>
+
+    <section class="projects-panel" aria-labelledby="projectsTitle">
+      <div class="projects-heading"><div><p class="section-kicker">ВАШІ АГЕНТИ</p><h2 id="projectsTitle">Поточні чати</h2></div><span class="summary-meta">оновлюються автоматично</span></div>
+      <p class="field-help">Великою назвою показано чат, нижче — його проєкт і агент. Готові чати залишаються тут 30 хвилин і повертаються при новій роботі. Попередження про втрачений стан залишаються видимими.</p>
+      <div id="providerOverview" class="provider-overview"></div>
+      <div class="sessions-list" id="sessionsList" hidden aria-label="Проєкти й чати"></div>
+      <p id="projectsEmpty" class="field-help">Зараз немає поточних чатів. Новий запит автоматично поверне чат у цей список.</p>
+      <details class="setup-guide"><summary>Як відстежувати Claude у застосунку?</summary><p><strong>Вкладка Code, локальні чати.</strong> Загальні обробники Beacon підключаються один раз для вашого користувача. Після цього відкрийте новий чат у вкладці Code, виберіть Local та потрібний проєкт. Запуск через окремий скрипт більше не обов’язковий.</p><p>Команда одноразового підключення з папки Agent Beacon:</p><pre><code>python -m agent_beacon.adapters.configure claude --install --scope user --state-dir .beacon --apply</code></pre><p>На цьому ПК загальне підключення вже налаштоване. Інші налаштування Claude зберігаються; перед зміною створюється резервна копія. Уже відкриті чати можуть потребувати нового запуску, щоб завантажити обробники.</p><p><strong>Звичайна вкладка Chat поки не відстежується.</strong> Вона не використовує обробники Claude Code. Хмарні, SSH та WSL-чати також потребують підключення у своєму середовищі.</p><p>Для окремого запуску в терміналі залишається доступним скрипт:</p><pre><code>.\scripts\windows\Start-ClaudeWithBeacon.ps1 -ProjectPath 'H:\мій-проєкт'</code></pre></details>
+    </section>
+
+    <details class="history-panel"><summary>Останні зміни стану <span class="summary-meta">до 30 подій</span></summary><p class="field-help">Історія починається заново після перезапуску сервера. Тексти запитів і відповідей не зберігаються.</p><div id="stateHistory" class="state-history"><p class="field-help">Поки немає подій.</p></div></details>
+
+    <section class="legend" aria-label="Значення індикаторів">
+      <div class="legend-item"><span class="legend-swatch swatch-red"></span><span><strong>Працює</strong><small>Агент виконує завдання</small></span></div>
+      <div class="legend-item"><span class="legend-swatch swatch-yellow"></span><span><strong>Потрібна увага</strong><small>Очікує на вашу дію</small></span></div>
+      <div class="legend-item"><span class="legend-swatch swatch-green"></span><span><strong>Готовий до завдання</strong><small>Готовий прийняти наступне завдання</small></span></div>
+    </section>
+
+    <details class="pairing-panel" id="pairingPanel" hidden>
+      <summary><span class="summary-icon" aria-hidden="true">↗</span><span>Підключити телефон</span><span class="summary-meta">локальна мережа</span></summary>
+      <div class="panel-content">
+        <ol class="install-steps"><li><strong>Встановіть Agent Beacon на Android.</strong> <a id="apkDownloadLink" href="/downloads/AgentBeacon-debug.apk" download>Завантажити APK на цьому комп’ютері</a></li><li><strong>Відкрийте застосунок → Scan QR → Connect.</strong></li></ol>
+        <p id="lanStatus" class="field-help">Перевіряємо, чи доступна локальна мережа…</p>
+        <p class="field-help">Підключіть телефон один раз. У версії Android 0.1.7 він сам знаходить раніше підключений Beacon після перезапуску або зміни адреси. QR потрібен для першого підключення; залиште фоновий моніторинг увімкненим.</p>
+        <label for="lanIp">Локальна IPv4-адреса комп’ютера</label>
+        <div class="pairing-row">
+          <input id="lanIp" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="192.168.1.10" aria-describedby="pairingHelp">
+          <button id="createApkQr" class="button button-primary" type="button">QR для встановлення</button>
+        </div>
+        <div class="apk-qr" id="apkQr" hidden><canvas id="apkQrCanvas" role="img" aria-label="QR-код для завантаження Android застосунку"></canvas><p class="qr-note">Відскануйте камерою телефона в тій самій Wi‑Fi мережі.</p><p id="apkUrlOutput" class="apk-url"></p></div>
+        <p id="pairingHelp" class="field-help">QR завантаження відкриває APK за адресою локальної мережі. Або завантажте APK на комп’ютері та передайте його телефоном через USB.</p>
+        <div class="pairing-row"><button id="createNativePairing" class="button button-quiet" type="button">Створити QR підключення</button><button id="copyLink" class="button button-quiet" type="button">Тестовий перегляд у браузері</button></div>
+        <label id="pairingLinkLabel" for="pairingLinkOutput" hidden>Посилання для телефона</label>
+        <input id="pairingLinkOutput" class="pairing-link-output" type="text" readonly hidden aria-label="Посилання для телефона">
+        <p class="notice" id="pairingNotice" role="status" aria-live="polite"></p>
+        <div class="native-qr" id="nativeQr" hidden>
+          <canvas id="nativeQrCanvas" role="img" aria-label="Одноразовий QR-код для підключення Agent Beacon"></canvas>
+          <p class="qr-note" id="qrExpiresNotice">QR-код одноразовий і діє 2 хвилини.</p>
+        </div>
+        <p class="qr-note">Якщо сканер не відкриє застосунок автоматично, скопіюйте посилання та передайте його в Agent Beacon.</p>
+      </div>
+    </details>
+
+    <section class="token-recovery" id="tokenRecovery" hidden aria-label="Повторне підключення">
+      <p id="recoveryNotice" class="field-help" role="status" aria-live="polite">Вставте ключ перегляду з посилання, яке ви скопіювали на комп’ютері.</p>
+      <label for="viewerTokenInput">Ключ перегляду</label>
+      <div class="pairing-row"><input id="viewerTokenInput" type="password" autocomplete="off" spellcheck="false" aria-label="Вставте ключ перегляду"><button id="saveViewerToken" class="button button-quiet" type="button">Підключити</button></div>
+    </section>
+
+    <details class="local-panel" id="localPanel" hidden>
+      <summary>Налаштування й діагностика комп’ютера</summary>
+      <p class="field-help"><a href="/setup.html">Відкрити майстер підключення Windows EXE →</a></p>
+      <p class="field-help"><a href="/downloads/AgentBeacon-Setup.exe" download>Завантажити Windows інсталятор (бета)</a></p>
+      <div class="local-heading">
+        <div><p class="section-kicker">ЛИШЕ НА ЦЬОМУ КОМП’ЮТЕРІ</p><h2 id="localTitle">Тестові стани</h2></div>
+        <span class="local-chip">локальний режим</span>
+      </div>
+      <p class="local-description">Керуйте демонстраційними сесіями. Стан автоматично протермінується через <span id="leaseSeconds">…</span> с без нового сигналу.</p>
+      <div class="control-grid">
+        <label>Agent ID<input id="agentId" type="text" maxlength="64" autocomplete="off" spellcheck="false" value="demo-agent"></label>
+        <label>Session ID<input id="sessionId" type="text" maxlength="64" autocomplete="off" spellcheck="false" value="demo-session"></label>
+        <label>Стан<select id="manualState"><option value="working">Працює · червоний</option><option value="awaiting_user">Очікує на вас · жовтий</option><option value="ready">Готовий до завдання · зелений</option></select></label>
+      </div>
+      <div class="button-row"><button id="setState" class="button button-primary" type="button">Оновити сигнал</button><button id="clearSessions" class="button button-quiet" type="button">Очистити всі тестові сесії</button></div>
+      <p class="notice" id="controlNotice" role="status" aria-live="polite"></p>
+      <details class="devices-panel">
+        <summary>Підключені телефони</summary>
+        <p class="field-help">Тут можна відкликати доступ телефону, який більше не використовуєте. Список доступний лише на цьому комп’ютері.</p>
+        <button id="refreshDevices" class="button button-quiet" type="button">Оновити список</button>
+        <div id="deviceList" class="device-list" aria-live="polite"></div>
+        <p class="notice" id="devicesNotice" role="status" aria-live="polite"></p>
+      </details>
+    </details>
+
+    <footer class="footer"><span>AGENT BEACON <span class="footer-separator">/</span> ЛОКАЛЬНИЙ ПОМІЧНИК</span><span>Сигнал оновлюється автоматично</span></footer>
+  </main>
+</body>
+</html>

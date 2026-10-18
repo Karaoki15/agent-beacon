@@ -1,0 +1,7 @@
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="140dp" android:minHeight="72dp" android:minResizeWidth="140dp" android:minResizeHeight="72dp"
+    android:targetCellWidth="2" android:targetCellHeight="1" android:updatePeriodMillis="1800000"
+    android:initialLayout="@layout/widget_wide_beacon" android:previewLayout="@layout/widget_wide_beacon"
+    android:resizeMode="horizontal|vertical" android:widgetCategory="home_screen|keyguard"
+    android:configure="com.agentbeacon.android.WideWidgetConfigActivity"
+    android:widgetFeatures="reconfigurable|configuration_optional" />

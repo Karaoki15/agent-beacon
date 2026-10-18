@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/wide_widget_root" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:gravity="center_vertical"
+    android:paddingStart="12dp" android:paddingEnd="12dp" android:paddingTop="6dp" android:paddingBottom="6dp"
+    android:background="@drawable/widget_wide_background">
+    <LinearLayout android:id="@+id/wide_widget_header" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:minHeight="22dp" android:layout_marginBottom="4dp" android:gravity="center_vertical">
+        <ImageView android:id="@+id/wide_widget_dot" android:layout_width="8dp" android:layout_height="8dp"
+            android:layout_marginEnd="8dp" android:src="@drawable/dot_unknown" android:contentDescription="@null" />
+        <TextView android:id="@+id/wide_widget_state" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="Paused" android:textColor="#FAFAFA" android:textStyle="bold"
+            android:textSize="13sp" android:maxLines="1" android:ellipsize="end" android:includeFontPadding="false" />
+        <TextView android:id="@+id/wide_widget_count" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginStart="8dp" android:text="BEACON" android:textColor="#818181" android:textSize="9sp"
+            android:maxLines="1" android:includeFontPadding="false" />
+    </LinearLayout>
+    <LinearLayout android:id="@+id/wide_first_row" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:minHeight="18dp" android:gravity="center_vertical">
+        <ImageView android:id="@+id/wide_codex_dot" android:layout_width="5dp" android:layout_height="5dp"
+            android:layout_marginEnd="8dp" android:src="@drawable/dot_unknown" android:contentDescription="@null" />
+        <TextView android:id="@+id/wide_codex_name" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="Codex" android:textColor="#D6D6D6" android:textSize="12sp"
+            android:maxLines="1" android:ellipsize="end" android:includeFontPadding="false" />
+        <TextView android:id="@+id/wide_codex_state" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginStart="8dp" android:text="No chats" android:textColor="#969696" android:textSize="11sp"
+            android:maxLines="1" android:ellipsize="end" android:includeFontPadding="false" />
+    </LinearLayout>
+    <LinearLayout android:id="@+id/wide_second_row" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:minHeight="18dp" android:gravity="center_vertical">
+        <ImageView android:id="@+id/wide_claude_dot" android:layout_width="5dp" android:layout_height="5dp"
+            android:layout_marginEnd="8dp" android:src="@drawable/dot_unknown" android:contentDescription="@null" />
+        <TextView android:id="@+id/wide_claude_name" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="Claude Code" android:textColor="#D6D6D6" android:textSize="12sp"
+            android:maxLines="1" android:ellipsize="end" android:includeFontPadding="false" />
+        <TextView android:id="@+id/wide_claude_state" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginStart="8dp" android:text="No chats" android:textColor="#969696" android:textSize="11sp"
+            android:maxLines="1" android:ellipsize="end" android:includeFontPadding="false" />
+    </LinearLayout>
+    <LinearLayout android:id="@+id/wide_third_row" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:minHeight="18dp" android:gravity="center_vertical" android:visibility="gone">
+        <ImageView android:id="@+id/wide_third_dot" android:layout_width="5dp" android:layout_height="5dp"
+            android:layout_marginEnd="8dp" android:src="@drawable/dot_unknown" android:contentDescription="@null" />
+        <TextView android:id="@+id/wide_third_name" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="Antigravity" android:textColor="#D6D6D6" android:textSize="12sp"
+            android:maxLines="1" android:ellipsize="end" android:includeFontPadding="false" />
+        <TextView android:id="@+id/wide_third_state" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginStart="8dp" android:text="No chats" android:textColor="#969696" android:textSize="11sp"
+            android:maxLines="1" android:ellipsize="end" android:includeFontPadding="false" />
+    </LinearLayout>
+    <TextView android:id="@+id/wide_widget_resize" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="Enlarge for agent details" android:textColor="#999999" android:textSize="11sp"
+        android:maxLines="1" android:ellipsize="end" android:includeFontPadding="false" android:visibility="gone" />
+</LinearLayout>

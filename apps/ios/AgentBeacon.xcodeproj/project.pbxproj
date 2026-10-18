@@ -1,0 +1,118 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000000000000000000001 /* AgentBeaconApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000001 /* AgentBeaconApp.swift */; };
+		A10000000000000000000002 /* BeaconStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000002 /* BeaconStore.swift */; };
+		A10000000000000000000003 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000003 /* ContentView.swift */; };
+		A10000000000000000000004 /* PairingScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000004 /* PairingScanner.swift */; };
+		A10000000000000000000005 /* BeaconModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000005 /* BeaconModels.swift */; };
+		A10000000000000000000006 /* BeaconPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000006 /* BeaconPersistence.swift */; };
+		A10000000000000000000007 /* BeaconNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000007 /* BeaconNetworking.swift */; };
+		A10000000000000000000008 /* BeaconActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000008 /* BeaconActivityAttributes.swift */; };
+		A10000000000000000000009 /* BeaconWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000009 /* BeaconWidget.swift */; };
+		A1000000000000000000000A /* BeaconLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000A /* BeaconLiveActivity.swift */; };
+		A1000000000000000000000B /* AgentBeaconWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000B /* AgentBeaconWidgetBundle.swift */; };
+		A1000000000000000000000C /* BeaconCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000C /* BeaconCoreTests.swift */; };
+		A1000000000000000000000E /* AgentBeaconWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A20000000000000000000012 /* AgentBeaconWidget.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A1000000000000000000000F /* BeaconKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000014 /* BeaconKeychain.swift */; };
+		A10000000000000000000010 /* PrivacyInfo.xcprivacy in App Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000015 /* PrivacyInfo.xcprivacy */; };
+		A10000000000000000000011 /* PrivacyInfo.xcprivacy in Widget Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000015 /* PrivacyInfo.xcprivacy */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A30000000000000000000001 /* PBXContainerItemProxy */ = {isa = PBXContainerItemProxy; containerPortal = A50000000000000000000001 /* Project object */; proxyType = 1; remoteGlobalIDString = A90000000000000000000002; remoteInfo = AgentBeaconWidget; };
+		A30000000000000000000002 /* PBXContainerItemProxy */ = {isa = PBXContainerItemProxy; containerPortal = A50000000000000000000001 /* Project object */; proxyType = 1; remoteGlobalIDString = A90000000000000000000001; remoteInfo = AgentBeacon; };
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A40000000000000000000001 /* Embed App Extensions */ = {isa = PBXCopyFilesBuildPhase; buildActionMask = 2147483647; dstPath = ""; dstSubfolderSpec = 13; files = (A1000000000000000000000E /* AgentBeaconWidget.appex in Embed App Extensions */, ); name = "Embed App Extensions"; runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A20000000000000000000001 /* AgentBeaconApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentBeaconApp.swift; sourceTree = "<group>"; };
+		A20000000000000000000002 /* BeaconStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconStore.swift; sourceTree = "<group>"; };
+		A20000000000000000000003 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A20000000000000000000004 /* PairingScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingScanner.swift; sourceTree = "<group>"; };
+		A20000000000000000000005 /* BeaconModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconModels.swift; sourceTree = "<group>"; };
+		A20000000000000000000006 /* BeaconPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconPersistence.swift; sourceTree = "<group>"; };
+		A20000000000000000000007 /* BeaconNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconNetworking.swift; sourceTree = "<group>"; };
+		A20000000000000000000008 /* BeaconActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconActivityAttributes.swift; sourceTree = "<group>"; };
+		A20000000000000000000009 /* BeaconWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconWidget.swift; sourceTree = "<group>"; };
+		A2000000000000000000000A /* BeaconLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconLiveActivity.swift; sourceTree = "<group>"; };
+		A2000000000000000000000B /* AgentBeaconWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentBeaconWidgetBundle.swift; sourceTree = "<group>"; };
+		A2000000000000000000000C /* BeaconCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconCoreTests.swift; sourceTree = "<group>"; };
+		A2000000000000000000000D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2000000000000000000000E /* Widget-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Widget-Info.plist"; sourceTree = "<group>"; };
+		A2000000000000000000000F /* AgentBeacon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AgentBeacon.entitlements; sourceTree = "<group>"; };
+		A20000000000000000000010 /* AgentBeaconWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AgentBeaconWidget.entitlements; sourceTree = "<group>"; };
+		A20000000000000000000011 /* AgentBeacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgentBeacon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A20000000000000000000012 /* AgentBeaconWidget.appex */ = {isa = PBXFileReference; explicitFileType = wrapper.app-extension; includeInIndex = 0; path = AgentBeaconWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A20000000000000000000013 /* AgentBeaconTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgentBeaconTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A20000000000000000000014 /* BeaconKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconKeychain.swift; sourceTree = "<group>"; };
+		A20000000000000000000015 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A60000000000000000000001 /* App Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		A60000000000000000000002 /* Widget Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		A60000000000000000000003 /* Test Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		A60000000000000000000004 /* App Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000010 /* PrivacyInfo.xcprivacy in App Resources */, ); runOnlyForDeploymentPostprocessing = 0; };
+		A60000000000000000000005 /* Widget Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000011 /* PrivacyInfo.xcprivacy in Widget Resources */, ); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A70000000000000000000001 = {isa = PBXGroup; children = (A70000000000000000000002 /* AgentBeacon */, A70000000000000000000003 /* AgentBeaconTests */, A70000000000000000000004 /* Products */, ); sourceTree = "<group>"; };
+		A70000000000000000000002 /* AgentBeacon */ = {isa = PBXGroup; path = AgentBeacon; sourceTree = "<group>"; children = (A70000000000000000000005 /* Shared */, A70000000000000000000006 /* Widget */, A70000000000000000000007 /* Resources */, A20000000000000000000001 /* AgentBeaconApp.swift */, A20000000000000000000002 /* BeaconStore.swift */, A20000000000000000000003 /* ContentView.swift */, A20000000000000000000004 /* PairingScanner.swift */, A20000000000000000000014 /* BeaconKeychain.swift */, A2000000000000000000000F /* AgentBeacon.entitlements */, ); };
+		A70000000000000000000003 /* AgentBeaconTests */ = {isa = PBXGroup; path = AgentBeaconTests; sourceTree = "<group>"; children = (A2000000000000000000000C /* BeaconCoreTests.swift */, ); };
+		A70000000000000000000004 /* Products */ = {isa = PBXGroup; name = Products; sourceTree = "<group>"; children = (A20000000000000000000011 /* AgentBeacon.app */, A20000000000000000000012 /* AgentBeaconWidget.appex */, A20000000000000000000013 /* AgentBeaconTests.xctest */, ); };
+		A70000000000000000000005 /* Shared */ = {isa = PBXGroup; path = Shared; sourceTree = "<group>"; children = (A20000000000000000000005 /* BeaconModels.swift */, A20000000000000000000006 /* BeaconPersistence.swift */, A20000000000000000000007 /* BeaconNetworking.swift */, A20000000000000000000008 /* BeaconActivityAttributes.swift */, ); };
+		A70000000000000000000006 /* Widget */ = {isa = PBXGroup; path = Widget; sourceTree = "<group>"; children = (A20000000000000000000009 /* BeaconWidget.swift */, A2000000000000000000000A /* BeaconLiveActivity.swift */, A2000000000000000000000B /* AgentBeaconWidgetBundle.swift */, A20000000000000000000010 /* AgentBeaconWidget.entitlements */, ); };
+		A70000000000000000000007 /* Resources */ = {isa = PBXGroup; path = Resources; sourceTree = "<group>"; children = (A2000000000000000000000D /* Info.plist */, A2000000000000000000000E /* Widget-Info.plist */, A20000000000000000000015 /* PrivacyInfo.xcprivacy */, ); };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A90000000000000000000001 /* AgentBeacon */ = {isa = PBXNativeTarget; buildConfigurationList = AA0000000000000000000001; buildPhases = (A60000000000000000000001 /* App Frameworks */, A80000000000000000000001 /* App Sources */, A60000000000000000000004 /* App Resources */, A40000000000000000000001 /* Embed App Extensions */, ); buildRules = (); dependencies = (AB0000000000000000000001 /* Widget dependency */, ); name = AgentBeacon; productName = AgentBeacon; productReference = A20000000000000000000011 /* AgentBeacon.app */; productType = "com.apple.product-type.application"; };
+		A90000000000000000000002 /* AgentBeaconWidget */ = {isa = PBXNativeTarget; buildConfigurationList = AA0000000000000000000002; buildPhases = (A60000000000000000000002 /* Widget Frameworks */, A80000000000000000000002 /* Widget Sources */, A60000000000000000000005 /* Widget Resources */, ); buildRules = (); dependencies = (); name = AgentBeaconWidget; productName = AgentBeaconWidget; productReference = A20000000000000000000012 /* AgentBeaconWidget.appex */; productType = "com.apple.product-type.app-extension"; };
+		A90000000000000000000003 /* AgentBeaconTests */ = {isa = PBXNativeTarget; buildConfigurationList = AA0000000000000000000003; buildPhases = (A60000000000000000000003 /* Test Frameworks */, A80000000000000000000003 /* Test Sources */, ); buildRules = (); dependencies = (AB0000000000000000000002 /* App test dependency */, ); name = AgentBeaconTests; productName = AgentBeaconTests; productReference = A20000000000000000000013 /* AgentBeaconTests.xctest */; productType = "com.apple.product-type.bundle.unit-test"; };
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A50000000000000000000001 /* Project object */ = {isa = PBXProject; attributes = {BuildIndependentTargetsInParallel = 1; LastSwiftUpdateCheck = 1600; LastUpgradeCheck = 1600; TargetAttributes = {A90000000000000000000001 = {CreatedOnToolsVersion = 16.0; }; A90000000000000000000002 = {CreatedOnToolsVersion = 16.0; }; A90000000000000000000003 = {CreatedOnToolsVersion = 16.0; TestTargetID = A90000000000000000000001; }; }; }; buildConfigurationList = AA0000000000000000000004; compatibilityVersion = "Xcode 15.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, Base, ); mainGroup = A70000000000000000000001; productRefGroup = A70000000000000000000004 /* Products */; projectDirPath = ""; projectRoot = ""; targets = (A90000000000000000000001 /* AgentBeacon */, A90000000000000000000002 /* AgentBeaconWidget */, A90000000000000000000003 /* AgentBeaconTests */, ); };
+/* End PBXProject section */
+
+/* Begin PBXBuildPhase section */
+		A80000000000000000000001 /* App Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000001 /* AgentBeaconApp.swift in Sources */, A10000000000000000000002 /* BeaconStore.swift in Sources */, A10000000000000000000003 /* ContentView.swift in Sources */, A10000000000000000000004 /* PairingScanner.swift in Sources */, A10000000000000000000005 /* BeaconModels.swift in Sources */, A10000000000000000000006 /* BeaconPersistence.swift in Sources */, A10000000000000000000007 /* BeaconNetworking.swift in Sources */, A10000000000000000000008 /* BeaconActivityAttributes.swift in Sources */, A1000000000000000000000F /* BeaconKeychain.swift in Sources */, ); runOnlyForDeploymentPostprocessing = 0; };
+		A80000000000000000000002 /* Widget Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000009 /* BeaconWidget.swift in Sources */, A1000000000000000000000A /* BeaconLiveActivity.swift in Sources */, A1000000000000000000000B /* AgentBeaconWidgetBundle.swift in Sources */, A10000000000000000000005 /* BeaconModels.swift in Sources */, A10000000000000000000006 /* BeaconPersistence.swift in Sources */, A10000000000000000000008 /* BeaconActivityAttributes.swift in Sources */, ); runOnlyForDeploymentPostprocessing = 0; };
+		A80000000000000000000003 /* Test Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A1000000000000000000000C /* BeaconCoreTests.swift in Sources */, ); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AB0000000000000000000001 /* Widget dependency */ = {isa = PBXTargetDependency; target = A90000000000000000000002 /* AgentBeaconWidget */; targetProxy = A30000000000000000000001 /* PBXContainerItemProxy */; };
+		AB0000000000000000000002 /* App test dependency */ = {isa = PBXTargetDependency; target = A90000000000000000000001 /* AgentBeacon */; targetProxy = A30000000000000000000002 /* PBXContainerItemProxy */; };
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AC0000000000000000000001 /* Project Debug */ = {isa = XCBuildConfiguration; buildSettings = {APP_BUNDLE_PREFIX = com.example; APP_GROUP_IDENTIFIER = "group.$(APP_BUNDLE_PREFIX).AgentBeacon"; IPHONEOS_DEPLOYMENT_TARGET = 17.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; }; name = Debug; };
+		AC0000000000000000000002 /* Project Release */ = {isa = XCBuildConfiguration; buildSettings = {APP_BUNDLE_PREFIX = com.example; APP_GROUP_IDENTIFIER = "group.$(APP_BUNDLE_PREFIX).AgentBeacon"; IPHONEOS_DEPLOYMENT_TARGET = 17.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; }; name = Release; };
+		AC0000000000000000000003 /* App Debug */ = {isa = XCBuildConfiguration; buildSettings = {APP_GROUP_IDENTIFIER = "group.$(APP_BUNDLE_PREFIX).AgentBeacon"; CODE_SIGN_ENTITLEMENTS = AgentBeacon/AgentBeacon.entitlements; CODE_SIGN_STYLE = Automatic; DEVELOPMENT_TEAM = ""; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = AgentBeacon/Resources/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_PREFIX).AgentBeacon"; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_EMIT_LOC_STRINGS = YES; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Debug; };
+		AC0000000000000000000004 /* App Release */ = {isa = XCBuildConfiguration; buildSettings = {APP_GROUP_IDENTIFIER = "group.$(APP_BUNDLE_PREFIX).AgentBeacon"; CODE_SIGN_ENTITLEMENTS = AgentBeacon/AgentBeacon.entitlements; CODE_SIGN_STYLE = Automatic; DEVELOPMENT_TEAM = ""; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = AgentBeacon/Resources/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_PREFIX).AgentBeacon"; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_EMIT_LOC_STRINGS = YES; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Release; };
+		AC0000000000000000000005 /* Widget Debug */ = {isa = XCBuildConfiguration; buildSettings = {APP_GROUP_IDENTIFIER = "group.$(APP_BUNDLE_PREFIX).AgentBeacon"; APPLICATION_EXTENSION_API_ONLY = YES; CODE_SIGN_ENTITLEMENTS = AgentBeacon/Widget/AgentBeaconWidget.entitlements; CODE_SIGN_STYLE = Automatic; DEVELOPMENT_TEAM = ""; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = AgentBeacon/Resources/Widget-Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_PREFIX).AgentBeacon.Widget"; PRODUCT_NAME = "$(TARGET_NAME)"; SKIP_INSTALL = YES; SWIFT_EMIT_LOC_STRINGS = YES; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Debug; };
+		AC0000000000000000000006 /* Widget Release */ = {isa = XCBuildConfiguration; buildSettings = {APP_GROUP_IDENTIFIER = "group.$(APP_BUNDLE_PREFIX).AgentBeacon"; APPLICATION_EXTENSION_API_ONLY = YES; CODE_SIGN_ENTITLEMENTS = AgentBeacon/Widget/AgentBeaconWidget.entitlements; CODE_SIGN_STYLE = Automatic; DEVELOPMENT_TEAM = ""; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = AgentBeacon/Resources/Widget-Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_PREFIX).AgentBeacon.Widget"; PRODUCT_NAME = "$(TARGET_NAME)"; SKIP_INSTALL = YES; SWIFT_EMIT_LOC_STRINGS = YES; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Release; };
+		AC0000000000000000000007 /* Tests Debug */ = {isa = XCBuildConfiguration; buildSettings = {BUNDLE_LOADER = "$(TEST_HOST)"; CODE_SIGN_STYLE = Automatic; DEVELOPMENT_TEAM = ""; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_PREFIX).AgentBeaconTests"; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgentBeacon.app/AgentBeacon"; }; name = Debug; };
+		AC0000000000000000000008 /* Tests Release */ = {isa = XCBuildConfiguration; buildSettings = {BUNDLE_LOADER = "$(TEST_HOST)"; CODE_SIGN_STYLE = Automatic; DEVELOPMENT_TEAM = ""; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_PREFIX).AgentBeaconTests"; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgentBeacon.app/AgentBeacon"; }; name = Release; };
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA0000000000000000000001 = {isa = XCConfigurationList; buildConfigurations = (AC0000000000000000000003, AC0000000000000000000004, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		AA0000000000000000000002 = {isa = XCConfigurationList; buildConfigurations = (AC0000000000000000000005, AC0000000000000000000006, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		AA0000000000000000000003 = {isa = XCConfigurationList; buildConfigurations = (AC0000000000000000000007, AC0000000000000000000008, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		AA0000000000000000000004 = {isa = XCConfigurationList; buildConfigurations = (AC0000000000000000000001, AC0000000000000000000002, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+/* End XCConfigurationList section */
+	};
+	rootObject = A50000000000000000000001 /* Project object */;
+}

@@ -1,0 +1,842 @@
+{
+  "Know when your agents need you": {
+    "id": "text_know_when_your_agents_need_you",
+    "uk": "Знайте, коли агентам потрібна ваша увага"
+  },
+  "Version ": {
+    "id": "text_version",
+    "uk": "Версія "
+  },
+  "Not connected": {
+    "id": "text_not_connected",
+    "uk": "Не підключено"
+  },
+  "Connect your computer to see your agents": {
+    "id": "text_connect_your_computer_to_see_your_agents",
+    "uk": "Підключіть комп’ютер, щоб бачити агентів"
+  },
+  "Check & connect": {
+    "id": "text_check_connect",
+    "uk": "Знайти й підключити"
+  },
+  "YOUR PROJECTS": {
+    "id": "text_your_projects",
+    "uk": "ВАШІ ПРОЄКТИ"
+  },
+  "Working, waiting and recently finished chats. Ready chats leave this list after 30 minutes.": {
+    "id": "text_working_waiting_and_recently_finished_chats_ready_chats",
+    "uk": "Активні чати, питання й нещодавно завершені запити. Готові чати зникають зі списку через 30 хвилин без активності."
+  },
+  "Recent activity": {
+    "id": "text_recent_activity",
+    "uk": "Останні зміни"
+  },
+  "Widget settings": {
+    "id": "text_widget_settings",
+    "uk": "Налаштування віджетів"
+  },
+  "Computer connection": {
+    "id": "text_computer_connection",
+    "uk": "Підключення комп’ютера"
+  },
+  "CONNECT YOUR COMPUTER": {
+    "id": "text_connect_your_computer",
+    "uk": "ПІДКЛЮЧЕННЯ КОМП’ЮТЕРА"
+  },
+  "Paste the pairing link from your desktop": {
+    "id": "text_paste_the_pairing_link_from_your_desktop",
+    "uk": "Вставте посилання підключення з комп’ютера"
+  },
+  "Or scan its QR code. Older private HTTP pairing links are also supported.": {
+    "id": "text_or_scan_its_qr_code_older_private_http",
+    "uk": "Або відскануйте QR-код. Попередні приватні HTTP-посилання також підтримуються."
+  },
+  "Connect": {
+    "id": "text_connect",
+    "uk": "Підключити"
+  },
+  "Your phone connects directly to the private Agent Beacon server. This app does not send prompts or responses.": {
+    "id": "text_your_phone_connects_directly_to_the_private_agent",
+    "uk": "Телефон підключається безпосередньо до вашого сервера Agent Beacon. Застосунок не передає тексти запитів і відповідей."
+  },
+  "Forget this server": {
+    "id": "text_forget_this_server",
+    "uk": "Забути цей сервер"
+  },
+  "Scan pairing QR": {
+    "id": "text_scan_pairing_qr",
+    "uk": "Сканувати QR підключення"
+  },
+  "STAY CONNECTED": {
+    "id": "text_stay_connected",
+    "uk": "ФОНОВІ ОНОВЛЕННЯ"
+  },
+  "The app checks while open.": {
+    "id": "text_the_app_checks_while_open",
+    "uk": "Статус оновлюється, поки застосунок відкритий."
+  },
+  "Questions and completed requests alert with sound and vibration. Starting work and routine updates stay silent. Monitoring pauses after 30 minutes without a reply from your computer.": {
+    "id": "text_questions_and_completed_requests_alert_with_sound_and",
+    "uk": "Про питання та завершення запиту сповіщаємо звуком і вібрацією. Початок роботи й звичайні оновлення тихі. Після 30 хвилин без відповіді комп’ютера моніторинг зупиняється."
+  },
+  "Start background monitoring": {
+    "id": "text_start_background_monitoring",
+    "uk": "Увімкнути фоновий моніторинг"
+  },
+  "Stop background monitoring": {
+    "id": "text_stop_background_monitoring",
+    "uk": "Зупинити фоновий моніторинг"
+  },
+  "Battery saver": {
+    "id": "text_battery_saver",
+    "uk": "Економія батареї"
+  },
+  "Reduce background network activity and retries when offline. Reconnecting can take slightly longer.": {
+    "id": "text_reduce_background_network_activity_and_retries_when_offline",
+    "uk": "Менше фонових звернень і спроб без мережі. Відновлення зв’язку може тривати трохи довше."
+  },
+  "Update diagnostics": {
+    "id": "text_update_diagnostics",
+    "uk": "Діагностика оновлень"
+  },
+  "Samsung LockStar can place a Beacon widget on your lock screen. Keep background monitoring on. The Live Updates switch is not needed for that widget.": {
+    "id": "text_samsung_lockstar_can_place_a_beacon_widget_on",
+    "uk": "Samsung LockStar дозволяє додати віджет Beacon на екран блокування. Залиште фоновий моніторинг увімкненим. Перемикач Live Updates для цього віджета не потрібний."
+  },
+  "Request Android Live Updates (experimental)": {
+    "id": "text_request_android_live_updates_experimental",
+    "uk": "Запитувати Android Live Updates (експериментально)"
+  },
+  "Requests an enhanced Android notification. Your phone decides whether to show it. This is separate from a LockStar widget.": {
+    "id": "text_requests_an_enhanced_android_notification_your_phone_decides",
+    "uk": "Запитує розширене сповіщення Android. Телефон вирішує, чи показувати його. Це окрема функція від віджета LockStar."
+  },
+  "That is not a valid Agent Beacon pairing link. Check the link and try again.": {
+    "id": "text_that_is_not_a_valid_agent_beacon_pairing",
+    "uk": "Це некоректне посилання Agent Beacon. Перевірте його та спробуйте ще раз."
+  },
+  "Saving connection to ": {
+    "id": "text_saving_connection_to",
+    "uk": "Зберігаємо підключення до "
+  },
+  "Connecting to ": {
+    "id": "text_connecting_to",
+    "uk": "Підключаємося до "
+  },
+  "Android could not save and verify the encrypted connection. Check device storage and try pairing again.": {
+    "id": "text_android_could_not_save_and_verify_the_encrypted",
+    "uk": "Android не зміг зберегти й перевірити захищене підключення. Перевірте вільне місце та підключіться ще раз."
+  },
+  "Connected with a legacy process token. It stops working when the server restarts.": {
+    "id": "text_connected_with_a_legacy_process_token_it_stops",
+    "uk": "Підключено зі старим токеном процесу. Після перезапуску сервера він перестане працювати."
+  },
+  "Paired. Your device credential is encrypted with Android Keystore.": {
+    "id": "text_paired_your_device_credential_is_encrypted_with_android",
+    "uk": "Підключено. Дані доступу захищено Android Keystore."
+  },
+  "Disconnected. Pair a server to see task status.": {
+    "id": "text_disconnected_pair_a_server_to_see_task_status",
+    "uk": "Відключено. Підключіть сервер, щоб бачити стан завдань."
+  },
+  "Scan an Agent Beacon pairing QR code": {
+    "id": "text_scan_an_agent_beacon_pairing_qr_code",
+    "uk": "Відскануйте QR підключення Agent Beacon"
+  },
+  "QR scan cancelled. You can paste a pairing link instead.": {
+    "id": "text_qr_scan_cancelled_you_can_paste_a_pairing",
+    "uk": "Сканування скасовано. Можна вставити посилання підключення."
+  },
+  "Pairing link scanned. Tap Connect to review and pair this phone.": {
+    "id": "text_pairing_link_scanned_tap_connect_to_review_and",
+    "uk": "Посилання відскановано. Натисніть «Підключити», щоб підключити цей телефон."
+  },
+  "That QR code is not a supported private Agent Beacon pairing link. You can paste a valid link instead.": {
+    "id": "text_that_qr_code_is_not_a_supported_private",
+    "uk": "Цей QR-код не містить підтримуваного приватного посилання Agent Beacon. Вставте коректне посилання."
+  },
+  "Pairing link was rejected or has expired. Create a fresh link and try again.": {
+    "id": "text_pairing_link_was_rejected_or_has_expired_create",
+    "uk": "Посилання відхилене або прострочене. Створіть нове та спробуйте ще раз."
+  },
+  "This server does not provide the phone pairing route yet.": {
+    "id": "text_this_server_does_not_provide_the_phone_pairing",
+    "uk": "Цей сервер ще не підтримує підключення телефона."
+  },
+  "The server returned HTTP ": {
+    "id": "text_the_server_returned_http",
+    "uk": "Сервер повернув HTTP "
+  },
+  ". Check the server and pairing link.": {
+    "id": "text_check_the_server_and_pairing_link",
+    "uk": ". Перевірте сервер і посилання підключення."
+  },
+  "The server at ": {
+    "id": "text_the_server_at",
+    "uk": "Сервер "
+  },
+  " timed out. Check Wi-Fi and try again.": {
+    "id": "text_timed_out_check_wi_fi_and_try_again",
+    "uk": " не відповів вчасно. Перевірте Wi-Fi та спробуйте ще раз."
+  },
+  "Could not connect to ": {
+    "id": "text_could_not_connect_to",
+    "uk": "Не вдалося підключитися до "
+  },
+  ". Check Wi-Fi and the server, then try again.": {
+    "id": "text_check_wi_fi_and_the_server_then_try",
+    "uk": ". Перевірте Wi-Fi і сервер та спробуйте ще раз."
+  },
+  " returned an invalid pairing response. Create a fresh link and try again.": {
+    "id": "text_returned_an_invalid_pairing_response_create_a_fresh",
+    "uk": " повернув некоректну відповідь підключення. Створіть нове посилання та спробуйте ще раз."
+  },
+  "Pairing with ": {
+    "id": "text_pairing_with",
+    "uk": "Підключення до "
+  },
+  " failed. Check the server and pairing link, then try again.": {
+    "id": "text_failed_check_the_server_and_pairing_link_then",
+    "uk": " не вдалося. Перевірте сервер і посилання та спробуйте ще раз."
+  },
+  "Unknown": {
+    "id": "text_unknown",
+    "uk": "Невідомо"
+  },
+  "Computer found automatically. Your existing pairing is retained.": {
+    "id": "text_computer_found_automatically_your_existing_pairing_is_retained",
+    "uk": "Комп’ютер знайдено автоматично. Попереднє підключення збережено."
+  },
+  "Could not save the recovered address. Your existing pairing is retained.": {
+    "id": "text_could_not_save_the_recovered_address_your_existing",
+    "uk": "Не вдалося зберегти знайдену адресу. Попереднє підключення збережено."
+  },
+  "Could not refresh monitoring settings. Stop and start monitoring to apply them.": {
+    "id": "text_could_not_refresh_monitoring_settings_stop_and_start",
+    "uk": "Не вдалося оновити налаштування. Вимкніть і знову ввімкніть моніторинг, щоб застосувати їх."
+  },
+  "Pair your computer once using its QR. Later, this button finds it automatically.": {
+    "id": "text_pair_your_computer_once_using_its_qr_later",
+    "uk": "Підключіть комп’ютер один раз через QR. Надалі ця кнопка знаходитиме його автоматично."
+  },
+  "Checking while open. Allow Agent Beacon notifications to resume background monitoring.": {
+    "id": "text_checking_while_open_allow_agent_beacon_notifications_to",
+    "uk": "Перевіряємо, поки застосунок відкритий. Дозвольте сповіщення Agent Beacon для фонового моніторингу."
+  },
+  "Looking for your paired computer… No new QR is needed.": {
+    "id": "text_looking_for_your_paired_computer_no_new_qr",
+    "uk": "Шукаємо ваш комп’ютер… Новий QR не потрібний."
+  },
+  "Checking while open. Background monitoring could not start.": {
+    "id": "text_checking_while_open_background_monitoring_could_not_start",
+    "uk": "Перевіряємо, поки застосунок відкритий. Не вдалося запустити фоновий моніторинг."
+  },
+  "Background monitoring could not resume. Tap Start background monitoring to try again.": {
+    "id": "text_background_monitoring_could_not_resume_tap_start_background",
+    "uk": "Не вдалося відновити фоновий моніторинг. Увімкніть його ще раз відповідною кнопкою."
+  },
+  "Pair a server before starting background monitoring.": {
+    "id": "text_pair_a_server_before_starting_background_monitoring",
+    "uk": "Підключіть сервер перед увімкненням фонового моніторингу."
+  },
+  "Enable both Agent Beacon notification channels in Android settings to keep background monitoring visible.": {
+    "id": "text_enable_both_agent_beacon_notification_channels_in_android",
+    "uk": "Дозвольте обидва канали сповіщень Agent Beacon у налаштуваннях Android для фонового моніторингу."
+  },
+  "Android could not start the monitor. Keep notifications enabled and try again.": {
+    "id": "text_android_could_not_start_the_monitor_keep_notifications",
+    "uk": "Android не зміг запустити моніторинг. Дозвольте сповіщення та спробуйте ще раз."
+  },
+  "Camera permission was declined. Paste the pairing link instead.": {
+    "id": "text_camera_permission_was_declined_paste_the_pairing_link",
+    "uk": "Доступ до камери не надано. Вставте посилання підключення."
+  },
+  "Background monitoring stays off until notifications are allowed. Foreground checks continue while this app is open.": {
+    "id": "text_background_monitoring_stays_off_until_notifications_are_allowed",
+    "uk": "Фоновий моніторинг вимкнений до надання дозволу на сповіщення. У відкритому застосунку перевірка працює."
+  },
+  "Check and reconnect to your computer": {
+    "id": "text_check_and_reconnect_to_your_computer",
+    "uk": "Знайти комп’ютер і відновити зв’язок"
+  },
+  "Checking…": {
+    "id": "text_checking",
+    "uk": "Перевіряємо…"
+  },
+  " · reconnecting": {
+    "id": "text_reconnecting",
+    "uk": " · відновлюємо зв’язок"
+  },
+  "Question reminder": {
+    "id": "text_question_reminder",
+    "uk": "Нагадування про питання"
+  },
+  "Looking for your paired computer…": {
+    "id": "text_looking_for_your_paired_computer",
+    "uk": "Шукаємо ваш комп’ютер…"
+  },
+  "Last known state · reconnecting to your server…": {
+    "id": "text_last_known_state_reconnecting_to_your_server",
+    "uk": "Останній відомий стан · відновлюємо зв’язок із сервером…"
+  },
+  "Waiting for your computer to send an update": {
+    "id": "text_waiting_for_your_computer_to_send_an_update",
+    "uk": "Чекаємо оновлення від комп’ютера"
+  },
+  "Needs a confirmed update: ": {
+    "id": "text_needs_a_confirmed_update",
+    "uk": "Потрібне підтвердження стану: "
+  },
+  "Waiting for agent activity": {
+    "id": "text_waiting_for_agent_activity",
+    "uk": "Чекаємо на активність агента"
+  },
+  "No recent update from your computer": {
+    "id": "text_no_recent_update_from_your_computer",
+    "uk": "Немає свіжого оновлення від комп’ютера"
+  },
+  "Your computer is connected · ": {
+    "id": "text_your_computer_is_connected",
+    "uk": "Комп’ютер підключений · "
+  },
+  " tracked chats": {
+    "id": "text_tracked_chats",
+    "uk": " відстежуваних чатів"
+  },
+  " tracked chat": {
+    "id": "text_tracked_chat",
+    "uk": " відстежуваний чат"
+  },
+  "Hide computer connection": {
+    "id": "text_hide_computer_connection",
+    "uk": "Сховати підключення комп’ютера"
+  },
+  "Your phone reconnects automatically. After 30 minutes offline, monitoring pauses to save battery.": {
+    "id": "text_your_phone_reconnects_automatically_after_30_minutes_offline",
+    "uk": "Телефон відновлює зв’язок автоматично. Після 30 хвилин без комп’ютера моніторинг зупиняється для економії батареї."
+  },
+  "Paused after 30 minutes without your computer. Tap Check & connect to resume.": {
+    "id": "text_paused_after_30_minutes_without_your_computer_tap",
+    "uk": "Зупинено після 30 хвилин без комп’ютера. Натисніть «Знайти й підключити», щоб продовжити."
+  },
+  "The app checks while open. Tap Check & connect for background updates.": {
+    "id": "text_the_app_checks_while_open_tap_check_connect",
+    "uk": "Статус оновлюється у відкритому застосунку. Натисніть «Знайти й підключити» для фонових оновлень."
+  },
+  "Notifications are disabled. Foreground checks work while this app is open.": {
+    "id": "text_notifications_are_disabled_foreground_checks_work_while_this",
+    "uk": "Сповіщення вимкнено. У відкритому застосунку перевірка працює."
+  },
+  "CURRENT CHATS": {
+    "id": "text_current_chats",
+    "uk": "АКТУАЛЬНІ ЧАТИ"
+  },
+  "No current chats. Finished chats leave this overview after 30 minutes and return when used again.": {
+    "id": "text_no_current_chats_finished_chats_leave_this_overview",
+    "uk": "Немає актуальних чатів. Завершені чати зникають через 30 хвилин без активності й повертаються при новому запиті."
+  },
+  "Connect your computer to see your agents and chats.": {
+    "id": "text_connect_your_computer_to_see_your_agents_and",
+    "uk": "Підключіть комп’ютер, щоб бачити агентів і чати."
+  },
+  "CONNECTION WARNINGS": {
+    "id": "text_connection_warnings",
+    "uk": "ПРОБЛЕМИ З ПІДКЛЮЧЕННЯМ"
+  },
+  "Connection needs attention": {
+    "id": "text_connection_needs_attention",
+    "uk": "Потрібно перевірити підключення"
+  },
+  "Claude Code: open a new Local chat in the Claude app to load Beacon hooks.": {
+    "id": "text_claude_code_open_a_new_local_chat_in",
+    "uk": "Claude Code: відкрийте новий локальний чат у Claude, щоб завантажити хуки Beacon."
+  },
+  "Connecting…": {
+    "id": "text_connecting",
+    "uk": "Підключаємося…"
+  },
+  "Requesting camera access…": {
+    "id": "text_requesting_camera_access",
+    "uk": "Запитуємо доступ до камери…"
+  },
+  "Opening camera…": {
+    "id": "text_opening_camera",
+    "uk": "Відкриваємо камеру…"
+  },
+  "QR scanner error: ": {
+    "id": "text_qr_scanner_error",
+    "uk": "Помилка QR-сканера: "
+  },
+  ". Paste the pairing link instead.": {
+    "id": "text_paste_the_pairing_link_instead",
+    "uk": ". Вставте посилання підключення."
+  },
+  "Working": {
+    "id": "text_working",
+    "uk": "Працює"
+  },
+  "Waiting for you": {
+    "id": "text_waiting_for_you",
+    "uk": "Потрібна ваша відповідь"
+  },
+  "Ready for next task": {
+    "id": "text_ready_for_next_task",
+    "uk": "Готовий до нового завдання"
+  },
+  "Waiting for update": {
+    "id": "text_waiting_for_update",
+    "uk": "Чекаємо оновлення"
+  },
+  "Agent is working · previous request reminder · remaining ": {
+    "id": "text_agent_is_working_previous_request_reminder_remaining",
+    "uk": "Агент працює · нагадування про питання · залишилося "
+  },
+  "Each Agent overview widget has its own agents, row order and chat counts.": {
+    "id": "text_each_agent_overview_widget_has_its_own_agents",
+    "uk": "Кожен великий віджет має власний вибір агентів, порядок рядків і лічильники чатів."
+  },
+  "Add Agent overview from your home screen's widget picker, then return here to customize it.": {
+    "id": "text_add_agent_overview_from_your_home_screen_s",
+    "uk": "Додайте Agent overview через список віджетів домашнього екрана, потім поверніться сюди для налаштування."
+  },
+  "Widget ": {
+    "id": "text_widget",
+    "uk": "Віджет "
+  },
+  " · Chat counts on": {
+    "id": "text_chat_counts_on",
+    "uk": " · Кількість чатів"
+  },
+  " · Status only": {
+    "id": "text_status_only",
+    "uk": " · Лише стан"
+  },
+  "You can also touch and hold a widget and choose Edit when your home-screen launcher offers it.": {
+    "id": "text_you_can_also_touch_and_hold_a_widget",
+    "uk": "Також можна затиснути віджет і вибрати «Редагувати», якщо ваш launcher це підтримує."
+  },
+  "Done": {
+    "id": "text_done",
+    "uk": "Готово"
+  },
+  "Customize widget": {
+    "id": "text_customize_widget",
+    "uk": "Налаштувати віджет"
+  },
+  "Changes apply to this Agent overview widget. Its main color follows only the agents you choose.": {
+    "id": "text_changes_apply_to_this_agent_overview_widget_its",
+    "uk": "Зміни стосуються лише цього великого віджета. Загальний стан враховує тільки вибраних агентів."
+  },
+  "AGENTS": {
+    "id": "text_agents",
+    "uk": "АГЕНТИ"
+  },
+  " (experimental)": {
+    "id": "text_experimental",
+    "uk": " (експериментально)"
+  },
+  "Antigravity needs its desktop integration connected before it can report status.": {
+    "id": "text_antigravity_needs_its_desktop_integration_connected_before_it",
+    "uk": "Для стану Antigravity спочатку підключіть його інтеграцію на комп’ютері."
+  },
+  "Show chat counts": {
+    "id": "text_show_chat_counts",
+    "uk": "Показувати кількість чатів"
+  },
+  "A small count appears only when an agent has multiple chats.": {
+    "id": "text_a_small_count_appears_only_when_an_agent",
+    "uk": "Лічильник з’являється лише тоді, коли агент має кілька чатів."
+  },
+  "CURRENT PREVIEW": {
+    "id": "text_current_preview",
+    "uk": "ПОПЕРЕДНІЙ ПЕРЕГЛЯД"
+  },
+  "Save widget": {
+    "id": "text_save_widget",
+    "uk": "Зберегти віджет"
+  },
+  "Cancel": {
+    "id": "text_cancel",
+    "uk": "Скасувати"
+  },
+  "ROW ORDER": {
+    "id": "text_row_order",
+    "uk": "ПОРЯДОК РЯДКІВ"
+  },
+  "Move ": {
+    "id": "text_move",
+    "uk": "Перемістити "
+  },
+  " up": {
+    "id": "text_up",
+    "uk": " вгору"
+  },
+  " down": {
+    "id": "text_down",
+    "uk": " вниз"
+  },
+  "Choose at least one agent.": {
+    "id": "text_choose_at_least_one_agent",
+    "uk": "Виберіть хоча б одного агента."
+  },
+  "Could not save this widget. Try again.": {
+    "id": "text_could_not_save_this_widget_try_again",
+    "uk": "Не вдалося зберегти віджет. Спробуйте ще раз."
+  },
+  "This Agent overview widget is no longer available.": {
+    "id": "text_this_agent_overview_widget_is_no_longer_available",
+    "uk": "Цей великий віджет більше недоступний."
+  },
+  "Back": {
+    "id": "text_back",
+    "uk": "Назад"
+  },
+  "The last 30 state changes on your computer, newest first. This history starts again when the Beacon server restarts. Prompts and answers are never included.": {
+    "id": "text_the_last_30_state_changes_on_your_computer",
+    "uk": "Останні 30 змін стану на комп’ютері, новіші зверху. Після перезапуску сервера історія починається заново. Тексти запитів і відповідей сюди не потрапляють."
+  },
+  "No recent changes yet. Connect your computer and start a request.": {
+    "id": "text_no_recent_changes_yet_connect_your_computer_and",
+    "uk": "Змін поки немає. Підключіть комп’ютер і надішліть завдання агенту."
+  },
+  "Session monitoring ended": {
+    "id": "text_session_monitoring_ended",
+    "uk": "Відстеження чату завершено"
+  },
+  "State not confirmed": {
+    "id": "text_state_not_confirmed",
+    "uk": "Стан не підтверджено"
+  },
+  "The saved chat remains available": {
+    "id": "text_the_saved_chat_remains_available",
+    "uk": "Збережений чат залишається доступним"
+  },
+  "Computer · ": {
+    "id": "text_computer",
+    "uk": "Комп’ютер · "
+  },
+  " · Some chats unavailable": {
+    "id": "text_some_chats_unavailable",
+    "uk": " · Деякі чати недоступні"
+  },
+  "Connection response measures the first reply, not the full delay from Codex. Last update includes keep-alives. Counters reset when the app process restarts. Prompts and answers are never included.": {
+    "id": "text_connection_response_measures_the_first_reply_not_the",
+    "uk": "Час відповіді — це перша відповідь сервера, а не повна затримка від Codex. Останнє оновлення враховує службові сигнали. Лічильники скидаються після перезапуску застосунку. Тексти запитів і відповідей не зберігаються."
+  },
+  "Automatic reconnection": {
+    "id": "text_automatic_reconnection",
+    "uk": "Автоматичне відновлення зв’язку"
+  },
+  "Android Live Updates (experimental)": {
+    "id": "text_android_live_updates_experimental",
+    "uk": "Android Live Updates (експериментально)"
+  },
+  "Background monitoring (silent)": {
+    "id": "text_background_monitoring_silent",
+    "uk": "Фоновий моніторинг (тихий)"
+  },
+  "Shows while Agent Beacon checks your paired private server.": {
+    "id": "text_shows_while_agent_beacon_checks_your_paired_private",
+    "uk": "Показується, поки Agent Beacon перевіряє ваш приватний сервер."
+  },
+  "Agent status (silent)": {
+    "id": "text_agent_status_silent",
+    "uk": "Стан агента (тихий)"
+  },
+  "Fresh state updates from Agent Beacon.": {
+    "id": "text_fresh_state_updates_from_agent_beacon",
+    "uk": "Свіжі оновлення стану від Agent Beacon."
+  },
+  "Agent Beacon is monitoring": {
+    "id": "text_agent_beacon_is_monitoring",
+    "uk": "Agent Beacon відстежує стан"
+  },
+  "Keeping your agent status up to date": {
+    "id": "text_keeping_your_agent_status_up_to_date",
+    "uk": "Оновлюємо стан ваших агентів"
+  },
+  "Stop": {
+    "id": "text_stop",
+    "uk": "Зупинити"
+  },
+  "Last known: ": {
+    "id": "text_last_known",
+    "uk": "Останній відомий стан: "
+  },
+  "Reconnecting to your server…": {
+    "id": "text_reconnecting_to_your_server",
+    "uk": "Відновлюємо зв’язок із сервером…"
+  },
+  "Your agents on this computer": {
+    "id": "text_your_agents_on_this_computer",
+    "uk": "Ваші агенти на цьому комп’ютері"
+  },
+  "Not supported by this Android version": {
+    "id": "text_not_supported_by_this_android_version",
+    "uk": "Ця версія Android не підтримує функцію"
+  },
+  "Not reported by this Android version": {
+    "id": "text_not_reported_by_this_android_version",
+    "uk": "Ця версія Android не повідомляє про дозвіл"
+  },
+  "Allowed": {
+    "id": "text_allowed",
+    "uk": "Дозволено"
+  },
+  "Not allowed": {
+    "id": "text_not_allowed",
+    "uk": "Не дозволено"
+  },
+  "Switch: ": {
+    "id": "text_switch",
+    "uk": "Перемикач: "
+  },
+  "On": {
+    "id": "text_on",
+    "uk": "Увімкнено"
+  },
+  "Off": {
+    "id": "text_off",
+    "uk": "Вимкнено"
+  },
+  "System permission: ": {
+    "id": "text_system_permission",
+    "uk": "Системний дозвіл: "
+  },
+  "Last status requested promotion: ": {
+    "id": "text_last_status_requested_promotion",
+    "uk": "Останній запит розширеного статусу: "
+  },
+  "Yes": {
+    "id": "text_yes",
+    "uk": "Так"
+  },
+  "No": {
+    "id": "text_no",
+    "uk": "Ні"
+  },
+  "Final placement is decided by Android/Samsung. LockStar widgets are separate.": {
+    "id": "text_final_placement_is_decided_by_android_samsung_lockstar",
+    "uk": "Остаточне розміщення визначає Android/Samsung. Віджети LockStar — окрема функція."
+  },
+  "Questions and completed work": {
+    "id": "text_questions_and_completed_work",
+    "uk": "Питання та завершення роботи"
+  },
+  "Alerts only when an agent needs your answer or finishes a request. Starts and routine updates stay silent.": {
+    "id": "text_alerts_only_when_an_agent_needs_your_answer",
+    "uk": "Звукові сигнали лише для питань і завершення запиту. Початок роботи та звичайні оновлення тихі."
+  },
+  "Your answer is needed": {
+    "id": "text_your_answer_is_needed",
+    "uk": "Потрібна ваша відповідь"
+  },
+  "Ready for the next request": {
+    "id": "text_ready_for_the_next_request",
+    "uk": "Готовий до нового запиту"
+  },
+  "Untitled chat": {
+    "id": "text_untitled_chat",
+    "uk": "Чат без назви"
+  },
+  "Project not provided": {
+    "id": "text_project_not_provided",
+    "uk": "Проєкт не вказано"
+  },
+  "Question reminder · agent is working": {
+    "id": "text_question_reminder_agent_is_working",
+    "uk": "Нагадування про питання · агент працює"
+  },
+  "Ready for the first request": {
+    "id": "text_ready_for_the_first_request",
+    "uk": "Готовий до першого запиту"
+  },
+  "Recently finished": {
+    "id": "text_recently_finished",
+    "uk": "Нещодавно завершено"
+  },
+  "Waiting for the first request": {
+    "id": "text_waiting_for_the_first_request",
+    "uk": "Чекаємо першого запиту"
+  },
+  "Waiting to reconnect after a restart": {
+    "id": "text_waiting_to_reconnect_after_a_restart",
+    "uk": "Відновлюємо зв’язок після перезапуску"
+  },
+  "Agent connection is unavailable": {
+    "id": "text_agent_connection_is_unavailable",
+    "uk": "Зв’язок з агентом недоступний"
+  },
+  "Claude did not supply a request ID; waiting for this chat's next event": {
+    "id": "text_claude_did_not_supply_a_request_id_waiting",
+    "uk": "Claude не передав ID запиту; чекаємо наступної події цього чату"
+  },
+  "An event was missed; waiting for this chat's next signal": {
+    "id": "text_an_event_was_missed_waiting_for_this_chat",
+    "uk": "Пропущено подію; чекаємо наступного сигналу цього чату"
+  },
+  "Invalid event received; waiting for this chat's next signal": {
+    "id": "text_invalid_event_received_waiting_for_this_chat_s",
+    "uk": "Отримано некоректну подію; чекаємо наступного сигналу цього чату"
+  },
+  "Connection was interrupted; waiting for this chat's next event": {
+    "id": "text_connection_was_interrupted_waiting_for_this_chat_s",
+    "uk": "Зв’язок перервався; чекаємо наступної події цього чату"
+  },
+  "Agent process unavailable; waiting to reconnect": {
+    "id": "text_agent_process_unavailable_waiting_to_reconnect",
+    "uk": "Процес агента недоступний; відновлюємо зв’язок"
+  },
+  "No recent update": {
+    "id": "text_no_recent_update",
+    "uk": "Немає свіжого оновлення"
+  },
+  "Waiting for a confirmed update": {
+    "id": "text_waiting_for_a_confirmed_update",
+    "uk": "Чекаємо підтвердження стану"
+  },
+  "App language": {
+    "id": "text_app_language",
+    "uk": "Мова застосунку"
+  },
+  "Automatic (phone language)": {
+    "id": "text_automatic_phone_language",
+    "uk": "Автоматично (мова телефона)"
+  },
+  "English for an English phone; Ukrainian for all other languages. Widgets keep short English labels.": {
+    "id": "text_english_for_an_english_phone_ukrainian_for_all",
+    "uk": "Для англійської мови телефона — English, для решти — українська. Короткі позначки віджетів залишаються англійською."
+  },
+  "Could not save the language. Try again.": {
+    "id": "text_could_not_save_the_language_try_again",
+    "uk": "Не вдалося зберегти мову. Спробуйте ще раз."
+  },
+  "Wait until the connection attempt finishes before changing the language.": {
+    "id": "text_wait_until_the_connection_attempt_finishes_before_changing",
+    "uk": "Дочекайтеся завершення підключення перед зміною мови."
+  },
+  "Connection": {
+    "id": "text_connection",
+    "uk": "Підключення"
+  },
+  "Background monitor": {
+    "id": "text_background_monitor",
+    "uk": "Фоновий моніторинг"
+  },
+  "Running": {
+    "id": "text_running",
+    "uk": "Працює"
+  },
+  "Stopped": {
+    "id": "text_stopped",
+    "uk": "Зупинено"
+  },
+  "Connection response": {
+    "id": "text_connection_response",
+    "uk": "Час відповіді сервера"
+  },
+  "No data yet": {
+    "id": "text_no_data_yet",
+    "uk": "Ще немає даних"
+  },
+  "Last update": {
+    "id": "text_last_update",
+    "uk": "Останнє оновлення"
+  },
+  "Last state change received": {
+    "id": "text_last_state_change_received",
+    "uk": "Остання отримана зміна стану"
+  },
+  "Fresh status remaining": {
+    "id": "text_fresh_status_remaining",
+    "uk": "Залишок актуальності стану"
+  },
+  "Snapshots received": {
+    "id": "text_snapshots_received",
+    "uk": "Отримано оновлень"
+  },
+  "Consecutive connection errors": {
+    "id": "text_consecutive_connection_errors",
+    "uk": "Помилок підключення поспіль"
+  },
+  "Last connection error": {
+    "id": "text_last_connection_error",
+    "uk": "Остання помилка підключення"
+  },
+  "None": {
+    "id": "text_none",
+    "uk": "Немає"
+  },
+  "Network timeout": {
+    "id": "text_network_timeout",
+    "uk": "Час очікування мережі вичерпано"
+  },
+  "Connection interrupted": {
+    "id": "text_connection_interrupted",
+    "uk": "Зв’язок перервано"
+  },
+  "Reconnecting": {
+    "id": "text_reconnecting_alternate",
+    "uk": "Відновлюємо зв’язок"
+  },
+  "Live events": {
+    "id": "text_live_events",
+    "uk": "Оновлення за подіями"
+  },
+  "Polling": {
+    "id": "text_polling",
+    "uk": "Періодична перевірка"
+  },
+  " s ago": {
+    "id": "text_s_ago",
+    "uk": " с тому"
+  },
+  " ms": {
+    "id": "text_ms",
+    "uk": " мс"
+  },
+  " s": {
+    "id": "text_s",
+    "uk": " с"
+  },
+  "Ready; searches only at startup or after connection errors": {
+    "id": "text_ready_searches_only_at_startup_or_after_connection",
+    "uk": "Готово; пошук лише після запуску або помилок підключення"
+  },
+  "Looking for your paired computer": {
+    "id": "text_looking_for_your_paired_computer_alternate",
+    "uk": "Шукаємо ваш комп’ютер"
+  },
+  "Computer not found; saved pairing retained": {
+    "id": "text_computer_not_found_saved_pairing_retained",
+    "uk": "Комп’ютер не знайдено; попереднє підключення збережено"
+  },
+  "Paired computer verified at ": {
+    "id": "text_paired_computer_verified_at",
+    "uk": "Комп’ютер перевірено за адресою "
+  },
+  "Search unavailable; saved pairing retained": {
+    "id": "text_search_unavailable_saved_pairing_retained",
+    "uk": "Пошук недоступний; попереднє підключення збережено"
+  },
+  "NO UPDATE": {
+    "id": "text_no_update",
+    "uk": "НЕМАЄ ДАНИХ"
+  },
+  "Ready": {
+    "id": "text_ready",
+    "uk": "Готовий"
+  },
+  "Needs you": {
+    "id": "text_needs_you",
+    "uk": "Потрібна відповідь"
+  },
+  "No update": {
+    "id": "text_no_update_label",
+    "uk": "Немає даних"
+  },
+  "Status checks (compatibility)": {
+    "id": "text_status_checks_compatibility",
+    "uk": "Перевірка стану (сумісність)"
+  }
+}

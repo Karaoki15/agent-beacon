@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="uk">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Agent Beacon — підключення</title><link rel="stylesheet" href="/setup.css"><script src="/vendor/qr.js" defer></script><script src="/setup.js" defer></script></head>
+<body><main>
+  <header><a class="brand" href="/">● AGENT BEACON <span>BETA</span></a><a href="/">До статусів ↗</a></header>
+  <p class="eyebrow">ПЕРШЕ ПІДКЛЮЧЕННЯ · WINDOWS + ANDROID</p>
+  <h1>Підключіть агентів.<br><span>Стан — завжди поруч.</span></h1>
+  <p class="intro">Одне налаштування для всіх ваших локальних проєктів. Програма працює в треї; телефон достатньо підключити один раз.</p>
+  <nav aria-label="Кроки налаштування"><a href="#agents">1 · Агенти</a><a href="#review">2 · Налаштування</a><a href="#phone">3 · Телефон</a><a href="#check">4 · Перевірка</a></nav>
+  <p id="notice" class="notice" role="status" aria-live="polite">З’єднуємося з локальною програмою…</p>
+  <section id="agents"><div class="section-head"><span class="number">01</span><div><h2>Якими агентами користуєтеся?</h2><p>Beacon додає обробники подій — хуки. Вони повідомляють про роботу, питання та завершення. Тексти ваших розмов не передаються.</p></div></div>
+    <div id="agentCards" class="agents"></div>
+    <p class="muted">Вхід в облікові записи й довіра до проєктів залишаються у самих агентах. Звичайний Claude Chat, хмарні, SSH та WSL-сесії цим локальним підключенням не охоплюються.</p>
+  </section>
+  <section id="review"><div class="section-head"><span class="number">02</span><div><h2>Налаштуйте одним натисканням</h2><p>Спочатку покажемо файли, яких стосується зміна. Інші хуки зберігаються, перед зміною створюються резервні копії.</p></div></div>
+    <label class="toggle"><input id="lan" type="checkbox"><span><strong>Підключати телефон у домашній Wi-Fi мережі</strong><small>Відкриває локальний сервер для вашої мережі. Для роботи тільки на ПК можна залишити вимкненим.</small></span></label>
+    <label id="migrationBox" class="toggle" hidden><input id="migration" type="checkbox"><span><strong>Зберегти телефони зі старої копії Beacon</strong><small id="migrationText"></small></span></label>
+    <button id="plan" type="button" disabled>Переглянути зміни</button>
+    <div id="planBox" class="plan" hidden><h3>Буде змінено</h3><ul id="changeList"></ul><details><summary>Файли й резервні копії</summary><ul id="technicalChanges"></ul></details><p>Вимкнений агент перестає відстежуватися цією копією Beacon; його старі хуки не видаляються. При зміні вибору програма коротко перепідключиться.</p><button id="apply" type="button">Підключити вибраних агентів</button></div>
+    <p class="muted">Якщо зміну заблоковано, відкрийте «Допомогти підключити» в картці агента: там готовий промпт для Codex або Claude Code. Він не містить ключів чи даних чатів.</p>
+  </section>
+  <section id="phone"><div class="section-head"><span class="number">03</span><div><h2>Телефон — один раз</h2><p>Комп’ютер і Android мають бути в одній довіреній мережі. Спершу встановіть APK, потім відскануйте окремий QR підключення всередині застосунку.</p></div></div>
+    <p id="phoneState" class="muted">Увімкніть доступ для телефона й застосуйте налаштування вище.</p>
+    <div id="phoneControls" hidden><label for="address">Адреса комп’ютера</label><select id="address"></select><div class="actions"><button id="apkQr" type="button">1 · QR для встановлення APK</button><button id="pairQr" type="button">2 · QR підключення</button></div><div id="qrBox" hidden><canvas id="qr" aria-label="QR-код" role="img"></canvas><p id="qrCaption"></p><a id="apkLink" hidden>Завантажити APK</a></div>
+      <details><summary>Телефон не бачить комп’ютер?</summary><p>Вимкніть гостьову Wi-Fi мережу та VPN для перевірки. Профіль мережі у Windows має бути «Приватна». Дозвіл нижче стосується тільки Beacon, приватного профілю й локальної підмережі.</p><button id="firewall" class="secondary" type="button">Дозволити Beacon у брандмауері Windows…</button><p id="firewallResult" role="status"></p><p>Windows запитає дозвіл адміністратора. Ця дія сама не змінює профіль вашої мережі.</p></details>
+    </div><p class="muted">Після першого підключення використовуйте Check &amp; connect на телефоні. Повторний QR зазвичай не потрібен. iPhone поки не підтримується в цій беті.</p>
+  </section>
+  <section id="check"><div class="section-head"><span class="number">04</span><div><h2>Перевірте справжній сигнал</h2><p>Після встановлення хуків відкрийте новий локальний чат у вибраному агенті та надішліть короткий запит. Уже відкритий чат може потребувати перезапуску.</p></div></div>
+    <div id="checks" class="checks"></div><div class="actions"><button id="refresh" class="secondary" type="button">Перевірити підключення</button><a class="button" href="/">Відкрити статуси →</a></div>
+    <label class="toggle"><input id="startup" type="checkbox" disabled><span><strong>Запускати Beacon разом із Windows</strong><small>Необов’язково. Вимкнено до вашого вибору. Закриття вкладки браузера залишає Beacon у треї.</small></span></label>
+  </section>
+  <footer><span id="version">Agent Beacon</span><span id="dataPath"></span><p>Щоб повністю закрити програму: значок у треї → Вийти. Дані підключення зберігаються між запусками й оновленнями.</p></footer>
+</main></body></html>
