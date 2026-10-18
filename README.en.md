@@ -1,6 +1,8 @@
 # Agent Beacon
 
-[Українська](README.md) · **English**
+![Agent Beacon](docs/assets/agent-beacon-cover-pixel.png)
+
+**English** · [Українська](README.uk.md)
 
 **Know when your AI agents need you.** A local Windows tray indicator, Android notifications and customizable widgets for Codex and Claude Code, with experimental Antigravity support.
 
