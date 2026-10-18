@@ -4,7 +4,9 @@
 
 **Know when your AI agents need you.** A local Windows tray indicator, Android notifications and customizable widgets for Codex and Claude Code, with experimental Antigravity support.
 
-[**Download for Windows — EXE**](https://github.com/Karaoki15/agent-beacon/releases/download/v0.2.0-beta.3/AgentBeacon-Setup.exe) · [**Download for Android — APK**](https://github.com/Karaoki15/agent-beacon/releases/download/v0.2.0-beta.3/AgentBeacon-Android.apk)
+[**Download and start — Windows EXE**](https://github.com/Karaoki15/agent-beacon/releases/download/v0.2.0-beta.3/AgentBeacon-Setup.exe)
+
+Start with Windows: the installer opens a step-by-step browser wizard. **The Android APK is included in the package** — download it to your phone from that wizard.
 
 Windows **0.2.0-beta.3** · Android **0.1.14** · [Release files and checksums](https://github.com/Karaoki15/agent-beacon/releases/tag/v0.2.0-beta.3)
 
@@ -12,11 +14,20 @@ Windows **0.2.0-beta.3** · Android **0.1.14** · [Release files and checksums](
 
 You **do not need Git, Python, GitHub Desktop or a GitHub account** to download and use the release.
 
-1. Click **Download for Windows — EXE** above, save the file and run it on the computer where your agents work.
-2. Click **Встановити й відкрити** (*Install and open*). The installer includes the runtime; the setup UI is currently Ukrainian.
-3. In the browser wizard, select your agents → **Переглянути зміни** (*Review changes*) → **Підключити вибраних агентів** (*Connect selected agents*). Beacon backs up existing settings before adding its hooks.
-4. Restart your agent or open a new local chat and send a short task. Confirm that Beacon receives a real event.
-5. For Android, enable phone access in the wizard. Install the APK using its download QR, then scan the **separate pairing QR inside Agent Beacon**. Keep the phone and computer on the same trusted network.
+1. **Install on your PC.** Download the EXE above → run it → **Встановити й відкрити** (*Install and open*). A local browser wizard opens on your computer. The Windows setup UI is currently Ukrainian.
+2. **Connect your agents.** Select Codex, Claude Code or experimental Antigravity. For Android, also enable **Підключати телефон у домашній Wi-Fi мережі** (*Connect a phone on your home Wi-Fi*) → **Переглянути зміни** (*Review changes*) → **Підключити вибраних агентів** (*Connect selected agents*). Beacon backs up existing settings before adding hooks.
+3. **Check a real signal.** Restart the selected agent or open a new local chat, send a short task, then click **Перевірити підключення** (*Check connection*) in the wizard. Installed hooks and received events are shown separately.
+4. **Install Android from the wizard.** In **Телефон — один раз** (*Phone — one-time setup*), click **1 · QR для встановлення APK** (*APK installation QR*). Scan it with your phone's ordinary camera, download and install the APK. Keep the phone and PC on the same trusted network; Android may ask for permission to install the file.
+5. **Pair your phone with the PC.** In the wizard, click **2 · QR підключення** (*Pairing QR*). Open Agent Beacon on Android and use its pairing scanner. Allow notifications and enable background monitoring if you want background notifications and widget updates.
+
+You can close the browser tab after setup — **Beacon must keep running in the Windows tray**. If your phone cannot reach the PC, expand **Телефон не бачить комп’ютер?** (*Phone cannot see the computer?*) for help and the separate private-network firewall permission.
+
+<details>
+<summary>Separate APK for updates or a fallback download</summary>
+
+[Download the Android APK from GitHub](https://github.com/Karaoki15/agent-beacon/releases/download/v0.2.0-beta.3/AgentBeacon-Android.apk). For first-time setup, start with the Windows wizard above.
+
+</details>
 
 [**Full installation guide →**](docs/INSTALL_EN.md) · [Troubleshooting and updates](docs/INSTALL_EN.md#when-something-does-not-connect)
 
