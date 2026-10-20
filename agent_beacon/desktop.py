@@ -24,7 +24,7 @@ from .adapters.process import process_info
 from .server import create_server
 from .pairing import PairingManager, DeviceStoreError
 
-VERSION = "0.2.0-beta.3"
+VERSION = "0.2.0-beta.4"
 PROVIDERS = ("codex", "claude", "antigravity")
 NAMES = {"codex": "Codex", "claude": "Claude Code", "antigravity": "Antigravity"}
 logger = logging.getLogger(__name__)

@@ -23,7 +23,7 @@ final class TextCatalog {
             case "Scan pairing QR": return R.string.text_scan_pairing_qr;
             case "STAY CONNECTED": return R.string.text_stay_connected;
             case "The app checks while open.": return R.string.text_the_app_checks_while_open;
-            case "Questions and completed requests alert with sound and vibration. Starting work and routine updates stay silent. Monitoring pauses after 30 minutes without a reply from your computer.": return R.string.text_questions_and_completed_requests_alert_with_sound_and;
+            case "Questions and completed requests alert with sound and vibration. Starting work and routine updates stay silent. Monitoring pauses after 30 minutes without a confirmed status from your computer.": return R.string.text_questions_and_completed_requests_alert_with_sound_and;
             case "Start background monitoring": return R.string.text_start_background_monitoring;
             case "Stop background monitoring": return R.string.text_stop_background_monitoring;
             case "Battery saver": return R.string.text_battery_saver;
@@ -82,8 +82,9 @@ final class TextCatalog {
             case " tracked chats": return R.string.text_tracked_chats;
             case " tracked chat": return R.string.text_tracked_chat;
             case "Hide computer connection": return R.string.text_hide_computer_connection;
-            case "Your phone reconnects automatically. After 30 minutes offline, monitoring pauses to save battery.": return R.string.text_your_phone_reconnects_automatically_after_30_minutes_offline;
-            case "Paused after 30 minutes without your computer. Tap Check & connect to resume.": return R.string.text_paused_after_30_minutes_without_your_computer_tap;
+            case "Your phone reconnects automatically. After 30 minutes without a confirmed status, monitoring pauses to save battery.": return R.string.text_your_phone_reconnects_automatically_after_30_minutes_offline;
+            case "Paused after 30 minutes without a confirmed status. Open the app to resume monitoring.": return R.string.text_paused_after_30_minutes_without_your_computer_tap;
+            case "Stopped by you. Tap Start background monitoring when you want to resume.": return R.string.text_stopped_by_you_tap_start_background_monitoring_when_you;
             case "The app checks while open. Tap Check & connect for background updates.": return R.string.text_the_app_checks_while_open_tap_check_connect;
             case "Notifications are disabled. Foreground checks work while this app is open.": return R.string.text_notifications_are_disabled_foreground_checks_work_while_this;
             case "CURRENT CHATS": return R.string.text_current_chats;

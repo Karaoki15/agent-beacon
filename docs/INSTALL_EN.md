@@ -2,11 +2,11 @@
 
 [Українська](INSTALL_UK.md) · **English**
 
-Versions: Windows **0.2.0-beta.3**, Android **0.1.14**. Requirements: Windows x64, Android 8 or newer, and an installed, signed-in supported agent on your computer.
+Versions: Windows **0.2.0-beta.4**, Android **0.1.15**. Requirements: Windows x64, Android 8 or newer, and an installed, signed-in supported agent on your computer.
 
 ## 1. Download on your computer
 
-Open https://github.com/Karaoki15/agent-beacon and click **Download for Windows — EXE** in the English README. Alternatively open Releases → v0.2.0-beta.3 → Assets → AgentBeacon-Setup.exe.
+Open https://github.com/Karaoki15/agent-beacon and click **Download for Windows — EXE** in the English README. Alternatively open Releases → v0.2.0-beta.4 → Assets → AgentBeacon-Setup.exe.
 
 You do not need a GitHub account, Git, GitHub Desktop, Python or the source folder. The automatically generated Source code ZIP is for developers, not the installer.
 
@@ -62,7 +62,7 @@ Red: working. Yellow: your answer is needed or a valid question reminder remains
 
 Questions and completed requests can alert with sound and vibration. Starts and routine updates stay silent. Ready chats leave the current list after 30 minutes of inactivity. “Session monitoring ended” does not delete the saved chat.
 
-Closing the browser tab keeps Beacon in the tray. Use the tray **Вийти** (*Exit*) command to stop it. Starting with Windows is optional. Android pauses monitoring after 30 minutes without the computer to save battery; **Check & connect** resumes it.
+Closing the browser tab keeps Beacon in the tray. Use the tray **Вийти** (*Exit*) command to stop it. Starting with Windows is optional. Android automatically pauses background monitoring after 30 minutes if only unknown status remains. Opening the app resumes an automatic pause. The notification's **Stop** action is manual; reopening the app does not restart monitoring after you use it.
 
 ## When something does not connect
 

@@ -71,6 +71,13 @@ class HookBridge:
         self._retired: OrderedDict[tuple[str, str], str | None] = OrderedDict()
         self._transient_sessions: OrderedDict[str, None] = OrderedDict()
         self._idle_processes: dict[str, OrderedDict[int, str]] = {provider: OrderedDict() for provider in selected}
+        # A completed chat can outlive the short-lived provider worker that
+        # reported it. Retain only the bounded terminal scope and its owner
+        # identity so the bridge can keep that ready scope leased and accept a
+        # later SessionEnd from the same native owner.
+        self._ready_owners: dict[str, OrderedDict[str, tuple[int, str, str | None]]] = {
+            provider: OrderedDict() for provider in selected
+        }
         self._names = SessionNames()
         self._antigravity_positions: OrderedDict[str, dict[str, Any]] = OrderedDict()
         self._stop = threading.Event()
@@ -186,11 +193,7 @@ class HookBridge:
                 self._retired.popitem(last=False)
             owner = self._processes[provider].pop(session_id, None)
             if item["active"] and item["state"] == "ready" and owner is not None:
-                pid, created = owner
-                self._idle_processes[provider][pid] = created
-                self._idle_processes[provider].move_to_end(pid)
-                while len(self._idle_processes[provider]) > 128:
-                    self._idle_processes[provider].popitem(last=False)
+                self._remember_ready_owner(provider, session_id, owner[0], owner[1], item["turn_id"])
             self._session_turns[provider].pop(session_id, None)
             self._session_states[provider].pop(session_id, None)
             self._session_capture_sequences[provider].pop(session_id, None)
@@ -263,18 +266,64 @@ class HookBridge:
             identity = self.identity_probe(pid)
             expected_names = provider_process_names(provider)
             # Desktop workers may exit after publishing Stop but before this poll.
-            # Accept only an enrolled owner's exact current terminal event.
-            completed_exit = (lifecycle_event in {"response_completed", "turn_stopped"}
-                              and identity is None and process_has_exited(pid)
-                              and self._processes[provider].get(session_id) == (pid, created)
-                              and turn_id is not None and turn_id == self._session_turns[provider].get(session_id)
+            # The owner can move from _processes to _ready_owners after a terminal
+            # event, so accept a repeated terminal hook from that same owner too.
+            # Its turn must still match the retained ready evidence exactly.
+            active_owner = self._processes[provider].get(session_id)
+            retained_owner = self._ready_owners[provider].get(session_id)
+            if (lifecycle_event in {"tool_pre", "tool_post", "awaiting_user", "resumed"}
+                    and identity is None and process_has_exited(pid)
+                    and retained_owner == (pid, created, turn_id)):
+                source = next(
+                    (item for item in self.core.snapshot()["sources"] if item["source"] == provider), None,
+                )
+                if source is not None and source["healthy"]:
+                    # Late same-turn hooks cannot undo a confirmed terminal
+                    # event, and the retained owner proves this exited worker
+                    # was enrolled. Consume them without changing ownership.
+                    return
+            terminal_event = lifecycle_event in {"response_completed", "turn_stopped"}
+            active_terminal_owner = (
+                active_owner == (pid, created)
+                and turn_id is not None
+                and turn_id == self._session_turns[provider].get(session_id)
+            )
+            retained_terminal_owner = (
+                retained_owner is not None
+                and retained_owner[:2] == (pid, created)
+                and turn_id is not None
+                and turn_id == retained_owner[2]
+            )
+            known_turn = self._session_turns[provider].get(session_id)
+            if known_turn is None and retained_owner is not None:
+                known_turn = retained_owner[2]
+            if terminal_event and turn_id is not None and known_turn is not None and turn_id != known_turn:
+                # A queued completion from an older turn is stale even if its
+                # PID has since been reused. Discard it before process checks
+                # can invalidate the current bridge lease or transfer owner.
+                return
+            completed_exit = (terminal_event and identity is None and process_has_exited(pid)
+                              and (active_terminal_owner or retained_terminal_owner)
                               and (provider, session_id) not in self._uncorrelated_sessions)
+            # An enrolled owner can publish its terminal event and exit before
+            # the bridge polls. Preserve that event only under a fresh bridge
+            # lease; the worker's exit does not close the native chat scope.
             if lifecycle_event == "session_closed":
                 owner = self._processes[provider].get(session_id)
-                if owner != (pid, created):
+                retained = self._ready_owners[provider].get(session_id)
+                if owner != (pid, created) and (retained is None or retained[:2] != (pid, created)):
                     raise EventConflict("session close belongs to a different process owner")
             elif not completed_exit and (identity is None or identity[0].lower() not in expected_names or identity[1] != created):
                 raise ValueError("agent process identity is not verified")
+
+            if completed_exit:
+                source = next(
+                    (item for item in self.core.snapshot()["sources"] if item["source"] == provider), None,
+                )
+                if source is None or not source["healthy"]:
+                    # A terminal hook cannot restore state after this bridge's
+                    # continuity lease has already expired.
+                    return
 
             if provider == "antigravity":
                 self._consume_antigravity(event, session_id, pid, created, sequence)
@@ -283,6 +332,12 @@ class HookBridge:
             retired_key = (provider, session_id)
             if retired_key in self._retired:
                 fresh_turn = lifecycle_event in {"user_prompt", "tool_pre", "tool_post", "turn_started"} and turn_id != self._retired[retired_key]
+                if lifecycle_event == "session_closed":
+                    retained = self._ready_owners[provider].get(session_id)
+                    if (retained is not None and retained[:2] == (pid, created)
+                            and (turn_id is None or retained[2] is None or turn_id == retained[2])):
+                        self._ready_owners[provider].pop(session_id, None)
+                    return
                 if lifecycle_event != "session_started" and not fresh_turn:
                     return
 
@@ -410,10 +465,6 @@ class HookBridge:
                 initial_idle=initial_idle,
                 session_name=event.get("session_name"),
             )
-            if completed_exit:
-                self.core.observe_session(provider, self._generations[provider], session_id, turn_id,
-                                          "session_closed", core_sequence + 1)
-                lifecycle_event = "session_closed"
             self._session_turns[provider][session_id] = turn_id if lifecycle_event != "session_closed" else None
             self._session_states[provider][session_id] = {
                 "session_started": "ready" if initial_idle else None, "turn_started": "working", "awaiting_user": "awaiting_user",
@@ -432,9 +483,11 @@ class HookBridge:
             self._session_capture_sequences[provider][session_id] = sequence
             self._uncorrelated_sessions.discard((provider, session_id))
             self._retired.pop((provider, session_id), None)
+            self._ready_owners[provider].pop(session_id, None)
             self._processes[provider][session_id] = (pid, created)
             if lifecycle_event == "session_closed":
                 self._processes[provider].pop(session_id, None)
+                self._ready_owners[provider].pop(session_id, None)
                 self._session_turns[provider].pop(session_id, None)
                 self._session_states[provider].pop(session_id, None)
                 self._clear_question_state(provider, session_id)
@@ -451,6 +504,7 @@ class HookBridge:
                 self._lose_continuity(provider)
 
     def _lose_continuity(self, provider: str, reason: str = "hook_gap") -> None:
+        self._invalidate_terminal_evidence(provider)
         self._human_answer_latch = {
             key: value for key, value in self._human_answer_latch.items() if key[0] != provider
         }
@@ -463,6 +517,14 @@ class HookBridge:
                                     self._source_sequences[provider], False, False, loss_reason=reason)
         except (CoreError, EventConflict, SessionLimitError):
             pass
+
+    def _invalidate_terminal_evidence(self, provider: str) -> None:
+        # Retained terminal evidence is valid only within an uninterrupted
+        # bridge lease. A gap or malformed hook requires fresh lifecycle proof.
+        self._ready_owners[provider].clear()
+        self._idle_processes[provider].clear()
+        for session_id in self._session_states[provider]:
+            self._session_states[provider][session_id] = None
 
     def _consume_antigravity(self, event: dict[str, Any], session_id: str, pid: int, created: str, sequence: int) -> None:
         from .antigravity import EVENTS, counter, transition
@@ -514,12 +576,37 @@ class HookBridge:
             if key[:2] != (provider, session_id)
         }
 
+    def _remember_ready_owner(
+        self, provider: str, session_id: str, pid: int, created: str, turn_id: str | None,
+    ) -> None:
+        owners = self._ready_owners[provider]
+        owners[session_id] = (pid, created, turn_id)
+        owners.move_to_end(session_id)
+        while len(owners) > 128:
+            owners.popitem(last=False)
+
     def _check_trailing_gap(self, provider: str) -> None:
+        # A bounded poll may leave valid events queued. Their allocated
+        # sequences are not missing; start the trailing-gap timer only after
+        # the provider queue has drained.
+        last_seen = self._last_capture_sequences[provider] or 0
+        expected = last_seen + 1
+        has_expected_event = False
+        for path in self.event_dir.glob(f"{provider}-*.json"):
+            try:
+                queued_sequence = int(path.name.split("-", 2)[1])
+            except (IndexError, ValueError):
+                continue
+            if queued_sequence == expected:
+                has_expected_event = True
+                break
+        if has_expected_event:
+            self._gap_since[provider] = None
+            return
         try:
             allocated = int((self.state_dir / f"{provider}.sequence").read_text(encoding="ascii"))
         except (OSError, ValueError):
             return
-        last_seen = self._last_capture_sequences[provider] or 0
         if allocated <= last_seen:
             self._gap_since[provider] = None
             return
@@ -532,6 +619,13 @@ class HookBridge:
             self._gap_since[provider] = None
 
     def _refresh_health(self, provider: str, candidate: tuple[str, int, str] | None = None) -> None:
+        prior_source = next(
+            (item for item in self.core.snapshot()["sources"] if item["source"] == provider), None,
+        )
+        if prior_source is None or not prior_source["healthy"]:
+            # Core has already expired or invalidated this bridge lease. The
+            # terminal summary cannot renew readiness across that boundary.
+            self._invalidate_terminal_evidence(provider)
         active = self._processes[provider]
         verified_processes: dict[str, tuple[int, str]] = {}
         probed: dict[int, tuple[str, str] | None] = {}
@@ -555,18 +649,10 @@ class HookBridge:
             result = probed.get(pid)
             exited = (result is not None and result[1] != created) or process_has_exited(pid)
             if self._session_states[provider].get(session_id) == "ready" and exited:
-                capture = self._session_capture_sequences[provider].get(session_id)
-                try:
-                    if capture is not None:
-                        self.core.observe_session(provider, self._generations[provider], session_id,
-                                                  self._session_turns[provider].get(session_id),
-                                                  "session_closed", capture * 2 + 1)
-                        self._session_states[provider][session_id] = None
-                        self._session_turns[provider].pop(session_id, None)
-                        self._clear_question_state(provider, session_id)
-                        continue
-                except (CoreError, EventConflict, SessionLimitError):
-                    logger.debug("Could not close a completed %s session", provider)
+                self._remember_ready_owner(
+                    provider, session_id, pid, created, self._session_turns[provider].get(session_id),
+                )
+                continue
             self._mark_session_unknown(provider, session_id)
         if candidate is not None:
             session_id, pid, expected_created = candidate
@@ -579,7 +665,7 @@ class HookBridge:
             allowed_names = provider_process_names(provider)
             if result is None or result[0].lower() not in allowed_names or result[1] != created:
                 self._idle_processes[provider].pop(pid, None)
-        verified = bool(verified_processes or self._idle_processes[provider])
+        verified = bool(verified_processes or self._idle_processes[provider] or self._ready_owners[provider])
         self._source_sequences[provider] += 1
         try:
             self.core.update_source(provider, self._generations[provider],

@@ -6,11 +6,11 @@
 
 **Знайте, коли AI-агентам потрібна ваша увага.** Локальний індикатор у треї Windows, сповіщення та налаштовувані Android-віджети для Codex і Claude Code, з експериментальною підтримкою Antigravity.
 
-[**Завантажити й почати — Windows EXE**](https://github.com/Karaoki15/agent-beacon/releases/download/v0.2.0-beta.3/AgentBeacon-Setup.exe)
+[**Завантажити й почати — Windows EXE**](https://github.com/Karaoki15/agent-beacon/releases/download/v0.2.0-beta.4/AgentBeacon-Setup.exe)
 
 Почніть із Windows: інсталятор відкриє покроковий майстер у браузері. **Android APK уже включено в пакет** — завантажите його на телефон із цього майстра.
 
-Windows **0.2.0-beta.3** · Android **0.1.14** · [Файли релізу та контрольні суми](https://github.com/Karaoki15/agent-beacon/releases/tag/v0.2.0-beta.3)
+Windows **0.2.0-beta.4** · Android **0.1.15** · [Файли релізу та контрольні суми](https://github.com/Karaoki15/agent-beacon/releases/tag/v0.2.0-beta.4)
 
 ## Встановити за кілька кроків
 
@@ -27,7 +27,7 @@ Windows **0.2.0-beta.3** · Android **0.1.14** · [Файли релізу та 
 <details>
 <summary>Окремий APK для оновлення або запасного завантаження</summary>
 
-[Завантажити Android APK з GitHub](https://github.com/Karaoki15/agent-beacon/releases/download/v0.2.0-beta.3/AgentBeacon-Android.apk). Для першого встановлення зручніше пройти майстер Windows вище.
+[Завантажити Android APK з GitHub](https://github.com/Karaoki15/agent-beacon/releases/download/v0.2.0-beta.4/AgentBeacon-Android.apk). Для першого встановлення зручніше пройти майстер Windows вище.
 
 </details>
 
@@ -46,6 +46,7 @@ Windows **0.2.0-beta.3** · Android **0.1.14** · [Файли релізу та 
 - Android-сповіщення про питання й завершення запиту. Початок роботи та звичайні оновлення тихі.
 - Компактний віджет і велика картка агентів. Кожна велика картка має власний вибір агентів, порядок і лічильники.
 - Автоматичне відновлення зв’язку, економія батареї та діагностика підключення.
+- Підтверджений стан Ready зберігається після завершення worker; черга подій обробляється до оцінки втрати зв’язку. Android відновлює автоматичну паузу після відкриття; ручна кнопка Stop лишається ручною.
 - **Українська / English** у застосунку Android. Автоматично: англійська мова телефона → English; решта мов → українська. Мову також можна вибрати вручну. Короткі позначки віджетів залишаються англійською.
 
 ![Ілюстрація макетів віджетів](docs/assets/widgets-preview.png)

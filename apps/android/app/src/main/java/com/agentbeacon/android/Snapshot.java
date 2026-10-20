@@ -216,6 +216,24 @@ final class Snapshot {
         return age < validForSeconds;
     }
 
+    boolean isUsefulForOfflineBudget(long nowElapsedMs) {
+        boolean freshAggregate = validForSeconds > 0 && nowElapsedMs >= requestStartedElapsedMs
+                && nowElapsedMs >= receivedElapsedMs
+                && nowElapsedMs - requestStartedElapsedMs < validForSeconds * 1000.0;
+        if (nowElapsedMs >= receivedElapsedMs && freshAggregate && available && state != null && !"unknown".equals(state)) return true;
+        // Partial snapshots are useful only when they contain a fresh, known
+        // provider/session state. Unknown-only replies must not extend monitoring.
+        for (SessionRow row : sessions) {
+            if (row.active && !"manual".equals(row.source) && row.isFresh(nowElapsedMs, requestStartedElapsedMs)
+                    && !"unknown".equals(row.actualState)) return true;
+        }
+        for (Double sourceValidity : idleSources.values()) {
+            if (sourceValidity != null && sourceValidity > 0 && nowElapsedMs >= requestStartedElapsedMs
+                    && nowElapsedMs - requestStartedElapsedMs < sourceValidity * 1000.0) return true;
+        }
+        return false;
+    }
+
     @SuppressWarnings("unchecked")
     String toJson() {
         return rawJson;

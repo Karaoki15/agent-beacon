@@ -48,7 +48,7 @@ final class BeaconClient {
             fallback = credentials.baseUrl().equals(fallbackAddress) && started < fallbackUntil;
         }
         if (fallback) {
-            Snapshot snapshot = status(credentials);
+            Snapshot snapshot = status(credentials, active);
             if (!active.cancelled()) listener.onSnapshot(snapshot, "Status checks (compatibility)", snapshot.receivedElapsedMs - snapshot.requestStartedElapsedMs);
             return false;
         }
@@ -87,7 +87,7 @@ final class BeaconClient {
             deadlineTask.cancel(false); connection.disconnect();
         }
         if (useFallback && !active.cancelled()) {
-            Snapshot snapshot = status(credentials);
+            Snapshot snapshot = status(credentials, active);
             if (!active.cancelled()) listener.onSnapshot(snapshot, "Status checks (compatibility)", snapshot.receivedElapsedMs - snapshot.requestStartedElapsedMs);
         }
         return !useFallback;
@@ -109,8 +109,12 @@ final class BeaconClient {
     }
 
     static Snapshot status(Credentials credentials) throws Exception {
+        return status(credentials, null);
+    }
+
+    private static Snapshot status(Credentials credentials, LiveRequest active) throws Exception {
         long requestStarted = android.os.SystemClock.elapsedRealtime();
-        byte[] response = request("GET", credentials.baseUrl() + "/api/status", credentials.token, null);
+        byte[] response = request("GET", credentials.baseUrl() + "/api/status", credentials.token, null, active);
         return Snapshot.parse(response, requestStarted, android.os.SystemClock.elapsedRealtime());
     }
 
@@ -139,11 +143,16 @@ final class BeaconClient {
     }
 
     private static byte[] request(String method, String address, String token, byte[] body) throws Exception {
+        return request(method, address, token, body, null);
+    }
+
+    private static byte[] request(String method, String address, String token, byte[] body, LiveRequest active) throws Exception {
         long deadline = android.os.SystemClock.elapsedRealtime() + Protocol.REQUEST_DEADLINE_MS;
         HttpURLConnection connection = null;
         ScheduledFuture<?> deadlineTask = null;
         try {
             connection = (HttpURLConnection) new URL(address).openConnection();
+            if (active != null) active.attach(connection);
             final HttpURLConnection timedConnection = connection;
             long delay = Math.max(0L, deadline - android.os.SystemClock.elapsedRealtime());
             deadlineTask = DEADLINE_EXECUTOR.schedule(timedConnection::disconnect, delay, TimeUnit.MILLISECONDS);

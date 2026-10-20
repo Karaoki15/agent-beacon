@@ -18,6 +18,7 @@ public final class StatusService extends Service {
     static final String ACTION_STOP = "com.agentbeacon.android.action.STOP_MONITOR";
     static final String ACTION_SNAPSHOT = "com.agentbeacon.android.action.SNAPSHOT";
     static final String ACTION_CHECK = "com.agentbeacon.android.action.CHECK_CONNECT";
+    static final String ACTION_RESUME_OFFLINE = "com.agentbeacon.android.action.RESUME_OFFLINE";
     private final Handler handler = new Handler(Looper.getMainLooper());
     private final ExecutorService worker = Executors.newSingleThreadExecutor();
     private final PollGenerationGate pollGate = new PollGenerationGate();
@@ -32,6 +33,8 @@ public final class StatusService extends Service {
     private OfflineBudget offlineBudget;
     private final Runnable offlineDeadline = () -> {
         if (stopped || offlineBudget == null) return;
+        // Let already-received stream callbacks queued on the main thread reset
+        // the budget before the expiry action runs at the same deadline.
         if (offlineBudget.expired(SystemClock.elapsedRealtime())) pauseOffline();
         else scheduleOfflineDeadline();
     };
@@ -52,6 +55,11 @@ public final class StatusService extends Service {
     }
 
     @Override public int onStartCommand(Intent intent, int flags, int startId) {
+        if (intent != null && ACTION_RESUME_OFFLINE.equals(intent.getAction()) && !MonitorState.offlinePaused(this)) {
+            if (running && !stopped) return START_STICKY;
+            stopSelf(startId);
+            return START_NOT_STICKY;
+        }
         if (activeRequest != null) activeRequest.cancel();
         delivery.cancel();
         StatusNotifier.ensureChannels(this);
@@ -89,7 +97,8 @@ public final class StatusService extends Service {
         stopped = false;
         pollFailures = 0;
         discoveryPending = true;
-        boolean explicit = intent != null && (ACTION_START.equals(intent.getAction()) || ACTION_CHECK.equals(intent.getAction()));
+        boolean explicit = intent != null && (ACTION_START.equals(intent.getAction()) || ACTION_CHECK.equals(intent.getAction())
+                || ACTION_RESUME_OFFLINE.equals(intent.getAction()));
         offlineBudget = MonitorState.begin(this, explicit);
         MonitorState.resumed(this);
         scheduleOfflineDeadline();
@@ -133,7 +142,10 @@ public final class StatusService extends Service {
                 boolean streamed = BeaconClient.updates(credentials, saver, request, (response, transport, responseMs) -> handler.post(() -> {
                     if (!isCurrent(pollGeneration, credentials)) return;
                     pollFailures = 0;
-                    offlineBudget.received(SystemClock.elapsedRealtime()); scheduleOfflineDeadline();
+                    long receivedAt = SystemClock.elapsedRealtime();
+                    if (response.isUsefulForOfflineBudget(receivedAt)) {
+                        offlineBudget.usable(receivedAt); MonitorState.usable(this, receivedAt); scheduleOfflineDeadline();
+                    }
                     UpdateDiagnostics.received(response, transport, responseMs);
                     AttentionNotifier.received(this, response, credentials);
                     delivery.receive(this, response, credentials, () -> isCurrent(pollGeneration, credentials), this::publishCached);
@@ -142,6 +154,9 @@ public final class StatusService extends Service {
                     boolean current = pollGate.complete(pollGeneration);
                     if (stopped) return;
                     if (!current) { handler.post(() -> poll(pollGate.current())); return; }
+                    if (!ConnectionStore.matches(this, credentials)) {
+                        offlineBudget = MonitorState.begin(this, false); scheduleOfflineDeadline(); schedulePoll(pollGeneration); return;
+                    }
                     if (streamed) handler.postDelayed(() -> poll(pollGeneration), UpdateSettings.reconnectDelay(saver));
                     else schedulePoll(pollGeneration);
                 });
@@ -152,7 +167,9 @@ public final class StatusService extends Service {
                     boolean current = pollGate.complete(pollGeneration);
                     if (stopped) return;
                     if (!current) { handler.post(() -> poll(pollGate.current())); return; }
-                    if (!ConnectionStore.matches(this, credentials)) { schedulePoll(pollGeneration); return; }
+                    if (!ConnectionStore.matches(this, credentials)) {
+                        offlineBudget = MonitorState.begin(this, false); scheduleOfflineDeadline(); schedulePoll(pollGeneration); return;
+                    }
                     pollFailures = Math.min(6, pollFailures + 1);
                     delivery.cancel();
                     UpdateDiagnostics.failed(error);
@@ -193,7 +210,7 @@ public final class StatusService extends Service {
 
     private void scheduleOfflineDeadline() {
         handler.removeCallbacks(offlineDeadline);
-        if (!stopped && offlineBudget != null) handler.postDelayed(offlineDeadline, Math.max(1L, offlineBudget.remaining(SystemClock.elapsedRealtime())));
+        if (!stopped && offlineBudget != null) handler.postDelayed(offlineDeadline, Math.max(1L, offlineBudget.remaining(SystemClock.elapsedRealtime()) + 250L));
     }
 
     private void pauseOffline() {

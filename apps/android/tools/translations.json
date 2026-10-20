@@ -75,9 +75,9 @@
     "id": "text_the_app_checks_while_open",
     "uk": "Статус оновлюється, поки застосунок відкритий."
   },
-  "Questions and completed requests alert with sound and vibration. Starting work and routine updates stay silent. Monitoring pauses after 30 minutes without a reply from your computer.": {
+  "Questions and completed requests alert with sound and vibration. Starting work and routine updates stay silent. Monitoring pauses after 30 minutes without a confirmed status from your computer.": {
     "id": "text_questions_and_completed_requests_alert_with_sound_and",
-    "uk": "Про питання та завершення запиту сповіщаємо звуком і вібрацією. Початок роботи й звичайні оновлення тихі. Після 30 хвилин без відповіді комп’ютера моніторинг зупиняється."
+    "uk": "Про питання та завершення запиту сповіщаємо звуком і вібрацією. Початок роботи й звичайні оновлення тихі. Після 30 хвилин без підтвердженого стану комп’ютера моніторинг зупиняється."
   },
   "Start background monitoring": {
     "id": "text_start_background_monitoring",
@@ -311,13 +311,17 @@
     "id": "text_hide_computer_connection",
     "uk": "Сховати підключення комп’ютера"
   },
-  "Your phone reconnects automatically. After 30 minutes offline, monitoring pauses to save battery.": {
+  "Your phone reconnects automatically. After 30 minutes without a confirmed status, monitoring pauses to save battery.": {
     "id": "text_your_phone_reconnects_automatically_after_30_minutes_offline",
-    "uk": "Телефон відновлює зв’язок автоматично. Після 30 хвилин без комп’ютера моніторинг зупиняється для економії батареї."
+    "uk": "Телефон відновлює зв’язок автоматично. Після 30 хвилин без підтвердженого стану моніторинг зупиняється для економії батареї."
   },
-  "Paused after 30 minutes without your computer. Tap Check & connect to resume.": {
+  "Paused after 30 minutes without a confirmed status. Open the app to resume monitoring.": {
     "id": "text_paused_after_30_minutes_without_your_computer_tap",
-    "uk": "Зупинено після 30 хвилин без комп’ютера. Натисніть «Знайти й підключити», щоб продовжити."
+    "uk": "Зупинено після 30 хвилин без підтвердженого стану. Відкрийте застосунок, щоб відновити моніторинг."
+  },
+  "Stopped by you. Tap Start background monitoring when you want to resume.": {
+    "id": "text_stopped_by_you_tap_start_background_monitoring_when_you",
+    "uk": "Зупинено вами. Натисніть «Увімкнути фоновий моніторинг», щоб відновити."
   },
   "The app checks while open. Tap Check & connect for background updates.": {
     "id": "text_the_app_checks_while_open_tap_check_connect",

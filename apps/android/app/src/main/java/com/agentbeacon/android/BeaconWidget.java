@@ -32,18 +32,15 @@ public final class BeaconWidget extends AppWidgetProvider {
         Snapshot cached = SnapshotCache.load(context);
         long now = SystemClock.elapsedRealtime();
         boolean monitoring = StatusService.isRunning();
-        boolean reminderOnly = monitoring && cached != null && cached.isQuestionReminderOnly(now);
+        boolean currentForeground = MainActivity.isVisible();
+        boolean liveSurface = monitoring || currentForeground;
+        boolean reminderOnly = liveSurface && cached != null && cached.isQuestionReminderOnly(now);
         boolean connected = ConnectionStore.load(context) != null;
-        // A cached snapshot is only actionable in the widget while the Android
-        // background monitor is running. Foreground polling stops when the app
-        // leaves the screen, and AppWidgetProvider updates are intentionally
-        // infrequent, so showing a fresh cache here could keep a stale color
-        // visible long after its lease expires.
-        StatusPresentation presentation = StatusPresentation.select(context, cached, monitoring, now);
-        String state = !connected || !monitoring ? "unknown" : presentation.state;
+        StatusPresentation presentation = StatusPresentation.select(context, cached, liveSurface, now);
+        String state = !connected || !liveSurface ? "unknown" : presentation.state;
         int label = labelFor(state);
         String stateText = !connected ? "Offline"
-                : !monitoring ? "Paused"
+                : !liveSurface ? "Paused"
                 : presentation.reconnecting ? shortLabel(state) + "…"
                 : cached == null ? "Unknown"
                 : !cached.isFresh(now) ? "Stale"
@@ -60,11 +57,11 @@ public final class BeaconWidget extends AppWidgetProvider {
                     >= 88 * Math.max(1f, context.getResources().getConfiguration().fontScale);
             views.setViewVisibility(R.id.widget_brand, roomy ? View.VISIBLE : View.GONE);
             views.setViewVisibility(R.id.widget_hint, roomy ? View.VISIBLE : View.GONE);
-            views.setTextViewText(R.id.widget_hint, !connected || !monitoring || "unknown".equals(state) ? "Connect" : "Live");
+            views.setTextViewText(R.id.widget_hint, !connected || !liveSurface || "unknown".equals(state) ? "Connect" : "Live");
             views.setInt(R.id.widget_dot, "setImageAlpha", presentation.reconnecting ? 150 : 255);
             views.setContentDescription(R.id.widget_root, "Agent Beacon: " + (presentation.reconnecting ? "Last known, reconnecting: " : "") + stateText);
             Intent open = new Intent(context, MainActivity.class).setAction("com.agentbeacon.android.OPEN_WIDGET." + id);
-            if (!connected || !monitoring || "unknown".equals(state)) open.putExtra(MainActivity.EXTRA_RECONNECT, true);
+            if (!connected || !liveSurface || "unknown".equals(state)) open.putExtra(MainActivity.EXTRA_RECONNECT, true);
             views.setOnClickPendingIntent(R.id.widget_root, PendingIntent.getActivity(context, id, open, PendingIntent.FLAG_UPDATE_CURRENT | (android.os.Build.VERSION.SDK_INT >= 23 ? PendingIntent.FLAG_IMMUTABLE : 0)));
             manager.updateAppWidget(id, views);
         }

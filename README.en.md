@@ -6,11 +6,11 @@
 
 **Know when your AI agents need you.** A local Windows tray indicator, Android notifications and customizable widgets for Codex and Claude Code, with experimental Antigravity support.
 
-[**Download and start — Windows EXE**](https://github.com/Karaoki15/agent-beacon/releases/download/v0.2.0-beta.3/AgentBeacon-Setup.exe)
+[**Download and start — Windows EXE**](https://github.com/Karaoki15/agent-beacon/releases/download/v0.2.0-beta.4/AgentBeacon-Setup.exe)
 
 Start with Windows: the installer opens a step-by-step browser wizard. **The Android APK is included in the package** — download it to your phone from that wizard.
 
-Windows **0.2.0-beta.3** · Android **0.1.14** · [Release files and checksums](https://github.com/Karaoki15/agent-beacon/releases/tag/v0.2.0-beta.3)
+Windows **0.2.0-beta.4** · Android **0.1.15** · [Release files and checksums](https://github.com/Karaoki15/agent-beacon/releases/tag/v0.2.0-beta.4)
 
 ## Install in a few steps
 
@@ -27,7 +27,7 @@ You can close the browser tab after setup — **Beacon must keep running in the 
 <details>
 <summary>Separate APK for updates or a fallback download</summary>
 
-[Download the Android APK from GitHub](https://github.com/Karaoki15/agent-beacon/releases/download/v0.2.0-beta.3/AgentBeacon-Android.apk). For first-time setup, start with the Windows wizard above.
+[Download the Android APK from GitHub](https://github.com/Karaoki15/agent-beacon/releases/download/v0.2.0-beta.4/AgentBeacon-Android.apk). For first-time setup, start with the Windows wizard above.
 
 </details>
 
@@ -46,6 +46,7 @@ You can close the browser tab after setup — **Beacon must keep running in the 
 - Android alerts for questions and completed requests. Starts and routine updates stay silent.
 - A compact widget and an agent overview widget. Each large widget has its own agents, row order and optional chat counts.
 - Automatic reconnection, a battery saver and connection diagnostics.
+- Confirmed ready survives worker exit, queued hooks are reconciled before continuity is judged, and Android resumes an automatic offline pause when opened. Manual Stop remains explicit.
 - **Ukrainian / English** Android UI. Automatic mode uses English only for an English phone; every other phone language falls back to Ukrainian. You can override it in the app. Short widget labels stay English.
 
 ![Widget layout illustration](docs/assets/widgets-preview.png)

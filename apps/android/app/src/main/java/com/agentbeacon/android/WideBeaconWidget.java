@@ -36,10 +36,11 @@ public final class WideBeaconWidget extends AppWidgetProvider {
         Snapshot snapshot = SnapshotCache.load(context);
         long now = SystemClock.elapsedRealtime();
         boolean connected = ConnectionStore.load(context) != null, monitoring = StatusService.isRunning();
-        StatusPresentation recovery = StatusPresentation.select(context, snapshot, monitoring, now);
+        boolean liveSurface = monitoring || MainActivity.isVisible();
+        StatusPresentation recovery = StatusPresentation.select(context, snapshot, liveSurface, now);
         for (int id : ids) {
             WideWidgetOptions options = WideWidgetSettings.load(context, id);
-            Frame frame = frame(context, id, options, snapshot, recovery, connected, monitoring, now);
+            Frame frame = frame(context, id, options, snapshot, recovery, connected, liveSurface, now);
             if (!force && frame.key.equals(PRESENTATIONS.get(id))) continue;
             manager.updateAppWidget(id, frame.views);
             PRESENTATIONS.put(id, frame.key);
@@ -50,8 +51,9 @@ public final class WideBeaconWidget extends AppWidgetProvider {
         Snapshot snapshot = SnapshotCache.load(context);
         long now = SystemClock.elapsedRealtime();
         boolean connected = ConnectionStore.load(context) != null, monitoring = StatusService.isRunning();
+        boolean liveSurface = monitoring || MainActivity.isVisible();
         return frame(context, AppWidgetManager.INVALID_APPWIDGET_ID, options, snapshot,
-                StatusPresentation.select(context, snapshot, monitoring, now), connected, monitoring, now).views;
+                StatusPresentation.select(context, snapshot, liveSurface, now), connected, liveSurface, now).views;
     }
 
     private static Frame frame(Context context, int id, WideWidgetOptions options, Snapshot snapshot,

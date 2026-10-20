@@ -59,14 +59,14 @@ def main() -> None:
                     '--add-data',str(payload)+':.', '--add-data',str(cache/'payload.sha256')+':.',
                     str(ROOT/'scripts/windows/installer_entry.py')],cwd=ROOT,check=True)
     out=ROOT/'dist/windows'
-    portable=out/'AgentBeacon-0.2.0-beta.3-windows-x64.zip'
+    portable=out/'AgentBeacon-0.2.0-beta.4-windows-x64.zip'
     shutil.copy2(payload,portable)
     shutil.copy2(ROOT/'docs/INSTALL_UK.md',out/'USER-GUIDE-UK.txt')
     shutil.copy2(ROOT/'docs/INSTALL_EN.md',out/'USER-GUIDE-EN.txt')
     names=['AgentBeacon-Setup.exe',portable.name]
     (out/'SHA256SUMS.txt').write_text(''.join(hashlib.sha256((out/name).read_bytes()).hexdigest()+'  '+name+'\n' for name in names))
-    (out/'BUILD-INFO.json').write_text(json.dumps({'version':'0.2.0-beta.3','arch':'x64','python':sys.version.split()[0],
-          'payload_sha256':digest,'status':'unsigned review candidate; physical and clean-machine checks required'},indent=2))
+    (out/'BUILD-INFO.json').write_text(json.dumps({'version':'0.2.0-beta.4','android_version':'0.1.15','arch':'x64','python':sys.version.split()[0],
+          'payload_sha256':digest,'status':'unsigned; code-level review passed; physical-phone and clean-machine acceptance required'},indent=2))
     print('Windows beta artifacts built in',out)
 
 

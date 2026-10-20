@@ -19,7 +19,7 @@
     <string name="text_scan_pairing_qr">"Сканувати QR підключення"</string>
     <string name="text_stay_connected">"ФОНОВІ ОНОВЛЕННЯ"</string>
     <string name="text_the_app_checks_while_open">"Статус оновлюється, поки застосунок відкритий."</string>
-    <string name="text_questions_and_completed_requests_alert_with_sound_and">"Про питання та завершення запиту сповіщаємо звуком і вібрацією. Початок роботи й звичайні оновлення тихі. Після 30 хвилин без відповіді комп’ютера моніторинг зупиняється."</string>
+    <string name="text_questions_and_completed_requests_alert_with_sound_and">"Про питання та завершення запиту сповіщаємо звуком і вібрацією. Початок роботи й звичайні оновлення тихі. Після 30 хвилин без підтвердженого стану комп’ютера моніторинг зупиняється."</string>
     <string name="text_start_background_monitoring">"Увімкнути фоновий моніторинг"</string>
     <string name="text_stop_background_monitoring">"Зупинити фоновий моніторинг"</string>
     <string name="text_battery_saver">"Економія батареї"</string>
@@ -78,8 +78,9 @@
     <string name="text_tracked_chats">" відстежуваних чатів"</string>
     <string name="text_tracked_chat">" відстежуваний чат"</string>
     <string name="text_hide_computer_connection">"Сховати підключення комп’ютера"</string>
-    <string name="text_your_phone_reconnects_automatically_after_30_minutes_offline">"Телефон відновлює зв’язок автоматично. Після 30 хвилин без комп’ютера моніторинг зупиняється для економії батареї."</string>
-    <string name="text_paused_after_30_minutes_without_your_computer_tap">"Зупинено після 30 хвилин без комп’ютера. Натисніть «Знайти й підключити», щоб продовжити."</string>
+    <string name="text_your_phone_reconnects_automatically_after_30_minutes_offline">"Телефон відновлює зв’язок автоматично. Після 30 хвилин без підтвердженого стану моніторинг зупиняється для економії батареї."</string>
+    <string name="text_paused_after_30_minutes_without_your_computer_tap">"Зупинено після 30 хвилин без підтвердженого стану. Відкрийте застосунок, щоб відновити моніторинг."</string>
+    <string name="text_stopped_by_you_tap_start_background_monitoring_when_you">"Зупинено вами. Натисніть «Увімкнути фоновий моніторинг», щоб відновити."</string>
     <string name="text_the_app_checks_while_open_tap_check_connect">"Статус оновлюється у відкритому застосунку. Натисніть «Знайти й підключити» для фонових оновлень."</string>
     <string name="text_notifications_are_disabled_foreground_checks_work_while_this">"Сповіщення вимкнено. У відкритому застосунку перевірка працює."</string>
     <string name="text_current_chats">"АКТУАЛЬНІ ЧАТИ"</string>

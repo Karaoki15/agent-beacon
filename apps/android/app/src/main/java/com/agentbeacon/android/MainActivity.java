@@ -182,7 +182,7 @@ public final class MainActivity extends LocalizedActivity {
         LinearLayout monitorCard = card(page);
         TextView monitorHeading = text(AppText.tr(MainActivity.this, "STAY CONNECTED"), 12, MUTED); monitorHeading.setLetterSpacing(0.08f); monitorCard.addView(monitorHeading);
         monitorLine = text(AppText.tr(MainActivity.this, "The app checks while open."), 14, Color.WHITE); LinearLayout.LayoutParams monitorLineParams = params(-1, -2); monitorLineParams.topMargin = dp(9); monitorCard.addView(monitorLine, monitorLineParams);
-        TextView monitorHelp = text(AppText.tr(MainActivity.this, "Questions and completed requests alert with sound and vibration. Starting work and routine updates stay silent. Monitoring pauses after 30 minutes without a reply from your computer."), 12, MUTED);
+        TextView monitorHelp = text(AppText.tr(MainActivity.this, "Questions and completed requests alert with sound and vibration. Starting work and routine updates stay silent. Monitoring pauses after 30 minutes without a confirmed status from your computer."), 12, MUTED);
         LinearLayout.LayoutParams monitorHelpParams = params(-1, -2); monitorHelpParams.topMargin = dp(6); monitorCard.addView(monitorHelp, monitorHelpParams);
         monitorButton = button(AppText.tr(MainActivity.this, "Start background monitoring"), true); LinearLayout.LayoutParams monitorButtonParams = params(-1, -2); monitorButtonParams.topMargin = dp(13); monitorCard.addView(monitorButton, monitorButtonParams); monitorButton.setOnClickListener(v -> toggleMonitoring());
         CheckBox batterySaver = new CheckBox(this);
@@ -256,6 +256,7 @@ public final class MainActivity extends LocalizedActivity {
                         if (!ConnectionStore.matches(MainActivity.this, credentials)) {
                             throw new IllegalStateException("Encrypted credentials could not be verified after saving.");
                         }
+                        MonitorState.newPairing(MainActivity.this);
                     } catch (Exception saveError) {
                         pairingInProgress = false;
                         setBusy(false);
@@ -295,6 +296,7 @@ public final class MainActivity extends LocalizedActivity {
         pairAttemptGeneration = 0L;
         setBusy(false);
         ConnectionStore.clear(this);
+        MonitorState.newPairing(this);
         SnapshotCache.clear(this);
         getSharedPreferences("beacon_runtime", MODE_PRIVATE).edit().putBoolean("monitor_enabled", false).apply();
         Intent stop = new Intent(this, StatusService.class).setAction(StatusService.ACTION_STOP);
@@ -621,8 +623,9 @@ public final class MainActivity extends LocalizedActivity {
         boolean running = isMonitoring();
         disconnectButton.setEnabled(credentials != null || pairingInProgress);
         monitorButton.setText(running ? AppText.tr(MainActivity.this, "Stop background monitoring") : AppText.tr(MainActivity.this, "Start background monitoring"));
-        monitorLine.setText(running ? AppText.tr(MainActivity.this, "Your phone reconnects automatically. After 30 minutes offline, monitoring pauses to save battery.")
-                : MonitorState.offlinePaused(this) ? AppText.tr(MainActivity.this, "Paused after 30 minutes without your computer. Tap Check & connect to resume.")
+        monitorLine.setText(running ? AppText.tr(MainActivity.this, "Your phone reconnects automatically. After 30 minutes without a confirmed status, monitoring pauses to save battery.")
+                : MonitorState.offlinePaused(this) ? AppText.tr(MainActivity.this, "Paused after 30 minutes without a confirmed status. Open the app to resume monitoring.")
+                : MonitorState.manuallyPaused(this) ? AppText.tr(MainActivity.this, "Stopped by you. Tap Start background monitoring when you want to resume.")
                 : (StatusNotifier.enabled(this) ? AppText.tr(MainActivity.this, "The app checks while open. Tap Check & connect for background updates.") : AppText.tr(MainActivity.this, "Notifications are disabled. Foreground checks work while this app is open.")));
     }
 
@@ -703,13 +706,26 @@ public final class MainActivity extends LocalizedActivity {
 
     @SuppressLint("UnspecifiedRegisterReceiverFlag")
     @Override protected void onResume() {
-        super.onResume(); resumed = true; visible = true; discoveryPending = true; pollFailures = 0; latest = SnapshotCache.load(this); render(); handler.removeCallbacks(refreshUi); handler.post(refreshUi); handler.removeCallbacks(pollForeground); handler.post(pollForeground);
+        super.onResume(); resumed = true; visible = true; discoveryPending = true; pollFailures = 0; latest = SnapshotCache.load(this); render(); handler.removeCallbacks(refreshUi); handler.post(refreshUi); handler.removeCallbacks(pollForeground);
         if (!receiverRegistered) {
             IntentFilter filter = new IntentFilter(StatusService.ACTION_SNAPSHOT);
             if (Build.VERSION.SDK_INT >= 33) registerReceiver(snapshotReceiver, filter, Context.RECEIVER_NOT_EXPORTED); else registerReceiver(snapshotReceiver, filter);
             receiverRegistered = true;
         }
-        recoverMonitoring();
+        boolean autoResumingOffline = MonitorState.offlinePaused(this) && ConnectionStore.load(this) != null && StatusNotifier.enabled(this);
+        if (autoResumingOffline) {
+            foregroundPollGate.invalidate(); delivery.cancel();
+            if (activeRequest != null) activeRequest.cancel();
+            try {
+                startForegroundService(new Intent(this, StatusService.class).setAction(StatusService.ACTION_RESUME_OFFLINE));
+            } catch (RuntimeException error) {
+                Log.w("AgentBeacon", "Could not resume monitoring after offline pause (" + error.getClass().getSimpleName() + ")");
+                handler.post(pollForeground);
+            }
+        } else {
+            recoverMonitoring();
+            handler.post(pollForeground);
+        }
         if (getIntent().getBooleanExtra(EXTRA_RECONNECT, false)) { getIntent().removeExtra(EXTRA_RECONNECT); handler.post(this::checkAndConnect); }
         networkReconnect = new NetworkReconnect(this, () -> {
             if (resumed && !StatusService.isRunning()) restartTransport();
@@ -717,7 +733,7 @@ public final class MainActivity extends LocalizedActivity {
         if (scannerPending && Build.VERSION.SDK_INT >= 23
                 && checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) launchScanner();
     }
-    @Override protected void onPause() { if (networkReconnect != null) { networkReconnect.close(); networkReconnect = null; } resumed = false; visible = false; foregroundPollGate.invalidate(); delivery.cancel(); if (activeRequest != null) activeRequest.cancel(); handler.removeCallbacks(refreshUi); handler.removeCallbacks(pollForeground); if (receiverRegistered) { unregisterReceiver(snapshotReceiver); receiverRegistered = false; } super.onPause(); }
+    @Override protected void onPause() { if (networkReconnect != null) { networkReconnect.close(); networkReconnect = null; } resumed = false; visible = false; foregroundPollGate.invalidate(); delivery.cancel(); if (activeRequest != null) activeRequest.cancel(); handler.removeCallbacks(refreshUi); handler.removeCallbacks(pollForeground); if (receiverRegistered) { unregisterReceiver(snapshotReceiver); receiverRegistered = false; } BeaconWidget.refresh(this); super.onPause(); }
     @Override protected void onSaveInstanceState(Bundle state) { state.putBoolean("scanner_pending", scannerPending); state.putBoolean("show_connection", showConnectionSettings); super.onSaveInstanceState(state); }
     @Override protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent); setIntent(intent);
